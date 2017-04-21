@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			width: 490px;
+			height: 170px;
+			border: solid 1px;
+			margin: 20px auto;
+			position: relative;
+		}
+		#box li{
+			list-style: none;
+		}
+		#list{
+			width: 2500px
+		}
+		#list li{
+			float: left;
+		}
+		#num{
+			position: absolute;
+			left:290px;
+			top:130px;
+		}
+		#num li{
+			width: 20px;
+			height: 20px;
+			background: blue;
+			border-radius: 15px;
+			float: left;
+			text-align: center;
+			color: #fff;
+			margin: 5px
+		}
+		#num .bg{
+			background: red
+		}
+		#left{
+			position: absolute;
+			top:60px;
+			color:red;
+			font-size: 50px;
+			font-weight: bolder;
+		}
+		#right{
+			position: absolute;
+			top:60px;color:red;
+			right: 10px;
+			font-size: 50px;
+			font-weight: bolder;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="list">
+			<li><img src="images/img1.jpg"></li>
+			<li><img src="images/img2.jpg"></li>
+			<li><img src="images/img3.jpg"></li>
+			<li><img src="images/img4.jpg"></li>
+			<li><img src="images/img5.jpg"></li>
+		</ul>
+		<ol id="num">
+			<li class='bg'>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ol>
+		<div id="left">&lt;</div>
+		<div id="right">&gt;</div>
+	</div>
+	</div>
+	<script src="../jquery-2.1.1.js"></script>
+	<script src="move.js"></script>
+	<script>
+		$(function(){
+			$('#box').move({
+				//'type':'click',
+				'isautoplay':true,
+				'id':'#box',
+				"ul":'#list',
+				'left':'#left',
+				'ol':'#num',
+				'right':'#right',
+				'time':1000,
+				'speed':2000
+			})
+		})
+		/*$(function(){
+			var index=0,
+				timer=null,
+				len=$('#list>li').length,
+				w=$('ul>li').width();
+			$('ul').width(w*len)
+			function auto(){
+				timer=setInterval(function(){
+					index++
+					if(index>len-1){
+						$('#list').width(w*(len+1))
+						$('#list>li').first().clone().appendTo('#list')
+						$('#list').animate({'margin-left':-w*len},1000,function(){
+							$('#list>li').last().remove()
+							$('#list').css('margin-left',0)
+						})
+						index=0
+						$('ol>li').eq(0).addClass('bg').siblings().removeClass('bg')
+					}else{
+						show(index)
+					}
+				},2000)
+			}
+			auto()
+			function show(index){
+				$('#list').stop().animate({'margin-left':-w*index},1000)
+				$('ol>li').eq(index).addClass('bg').siblings().removeClass('bg')
+			}
+			$('ol>li').on('mouseover',function(){
+				index=$(this).index()
+				show(index)
+			})
+			$('#list').hover(function(){
+				clearInterval(timer)
+			},function(){
+				auto()
+			})
+			$('#left').on('click',function(){
+				index--
+				if(index<0){
+					index=len-1
+			}
+			show(index)
+			})
+			$('#right').on('click',function(){
+				index++
+				if(index>len-1){
+					index=0
+			}
+			show(index)
+			})
+		})*/
+	</script>
+</body>
+</html>

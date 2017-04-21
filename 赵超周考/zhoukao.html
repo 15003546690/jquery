@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			width: 200px;
+			height: 300px;
+			margin:50px auto;
+			padding:10px;
+		}
+		#box div{
+			float: left;
+			width: 74px;
+			background:#999;
+			border:2px #ccc solid;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			margin-right: 10px;
+		}
+		#box div.bg{
+			border:1px solid blue;
+			background: red;
+		}
+		#box ul li{
+			clear: both;
+			background:pink;
+			list-style: none;
+			width: 250px;
+			border:2px #ccc solid;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+		}
+		#box ul li.libg{
+			border:1px solid blue;
+		}
+	</style>
+</head>
+<body>
+	<div id='box'>
+		<div class='bg'>男</div>
+		<div>女</div>
+		<ul id='list'>
+			<li>Disabled</li>
+			<li>Disabled & chechked</li>
+			<li>女</li>
+			<li>女</li>
+			<li>女</li>
+		</ul>
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(function(){
+			$('#box div').each(function(){
+				$(this).on('click',function(){
+					$(this).addClass('bg').siblings().removeClass('bg')
+				})
+			})
+			$('#box ul li:gt(1)').each(function(){
+				$(this).on('click',function(){
+					$(this).toggleClass('libg')
+				})
+			})
+			$('ul').find('li').eq(1).addClass('libg')
+		})
+
+	</script>
+</body>
+</html>

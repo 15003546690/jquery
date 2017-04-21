@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		#box{
+			background:#000;
+			position: relative;
+		}
+		#box span{
+			position: absolute;
+		}
+		#box span img{
+			width: 40px;
+			height: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div id='box'>
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(function(){
+			$('#box').width($(window).width())
+			$('#box').height($(window).height())
+			var timer=null,index=0;
+			var w=$(window).width()-45
+			var h=$(window).height()-45
+			var lg=50;
+			for (var i = 0; i < lg; i++) {
+						var num=Math.floor(Math.random()*w)
+						var num1=Math.floor(Math.random()*h)
+						$('<span style="left:'+num+'px;top:'+num1+'px"><img src="star.png" alt="" /></span>').appendTo('#box')
+						
+						autoplay();
+					}
+					
+			function autoplay(){
+				$('#box span').animate({"opacity":0},10,function(){
+						auto();
+					});
+				
+			}
+			function auto(){
+				$('#box span').animate({"opacity":1},10,function(){
+						autoplay();
+					});
+			}
+			
+		})
+
+
+	</script>
+</body>

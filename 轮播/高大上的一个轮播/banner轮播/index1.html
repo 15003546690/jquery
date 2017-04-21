@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding: 0;}
+        body{background-color: black;}
+        #wrap{
+            width: 1000px;height: 545px;border: 1px solid red;
+            margin: 100px auto;position: relative;
+        }
+
+        #wrap ul li{
+            color:white;list-style: none;width: 100px;height: 100px;
+            border: 1px solid white;position: absolute;
+        }
+        #wrap ul li.l1{width: 360px;height: 540px;left: 320px;top: 0;z-index: 10;}
+        #wrap ul li.l2{width: 316px;height: 480px;left: 624px;top: 30px;z-index: 9;}
+        #wrap ul li.l3{width: 216px;height: 320px;left: 784px;top: 110px;z-index: 8;}
+        #wrap ul li.l4{width: 114px;height: 170px;left: 726px;top: 185px;z-index: 7;}
+        #wrap ul li.l5{width: 72px;height: 110px;left: 464px;top: 215px;z-index: 6;}
+        #wrap ul li.l6{width: 114px;height: 170px;left: 150px;top: 185px;z-index: 7;}
+        #wrap ul li.l7{width: 216px;height: 320px;left: 0px;top: 110px;z-index: 8;}
+        #wrap ul li.l8{width: 316px;height: 480px;left: 60px;top: 30px;z-index: 9;}
+        #left,#right{
+            color: white;font-size:60px;position: absolute;z-index: 10;
+            background:rgba(0,0,0,0.5);top: 240px;
+        }
+        #right{right: 10px;}
+        #left{left: 10px;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li class="l1">
+                <img src="img/1.jpg" width="100%" height="100%">
+            </li>
+            <li class="l2">
+                <img src="img/2.jpg" width="100%" height="100%">
+            </li>
+            <li class="l3">
+                <img src="img/3.jpg" width="100%" height="100%">
+            </li>
+            <li class="l4">
+                <img src="img/4.jpg" width="100%" height="100%">
+            </li>
+            <li class="l5">
+                <img src="img/5.jpg" width="100%" height="100%">
+            </li>
+            <li class="l6">
+                <img src="img/6.jpg" width="100%" height="100%">
+            </li>
+            <li class="l7">
+                <img src="img/7.jpg" width="100%" height="100%">
+            </li>
+            <li class="l8">
+                <img src="img/8.jpg" width="100%" height="100%">
+            </li>
+        </ul>
+        <div id="left"> < </div>
+        <div id="right"> > </div>
+    </div>
+<!--引入js-->
+    <script src="js/jquery-2.2.0.js"></script>
+ <script>
+
+     var timer = '';
+     //声明变量
+     function move(t){
+         var arrW =[],arrH = [],arrT = [],arrL = [],arrZ = [];
+             $('ul li').each(function(i){//便利循环 把li里面的属性写入arr
+                 arrW[i] = $(this).css('width');
+                 arrH[i] = $(this).css('height');
+                 arrT[i] = $(this).css('top');
+                 arrL[i] = $(this).css('left');
+                 arrZ[i] = $(this).css('z-index');
+                 //alert(i);
+             });
+             $('ul li').each(function(i){
+                 var index;
+                 if(t==2) {
+                     index = i-1;
+                     if(index<0){index=7}
+                 }else{
+                     index = i+1;
+                     if(index>7){index=0}
+                 }
+
+
+                    $(this).css('z-index',arrZ[index]);
+                    $(this).animate({
+                        width:arrW[index],
+                        height:arrH[index],
+                        top:arrT[index],
+                        left:arrL[index],
+                    },500);
+             })
+
+     }
+     //右点击
+     $('#right').click(function(){
+         clearInterval(timer);
+         move(2);
+     });
+     //左点击
+     $('#left').click(function(){
+         clearInterval(timer);
+         move(1);
+     });
+     //自动轮播
+     timer = setInterval(function(){
+
+               move(2);
+     },3000)
+     //鼠标离开li时开始轮播
+     $('#wrap ul').mouseout(function(){
+         clearInterval(timer);
+         timer = setInterval(function(){
+
+             move(2);
+         },5000)
+
+     });
+
+ </script>
+</body>
+</html>

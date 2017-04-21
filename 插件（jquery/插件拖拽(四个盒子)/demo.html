@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="$.drug.js"></script>
+	<style>
+		div{
+			cursor: move;
+			text-align: center;
+			line-height: 200px;
+			color: #fff;
+			font-size: 1.4rem;
+		}
+		.close{
+			width: 20px;
+			height: 20px;
+			background: #ccc;
+			float: right; 
+			line-height: 20px;
+			text-align: center;
+			color: blue;
+			opacity: 0.7;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn1">单击1</button>
+	<button id="btn2">单击2</button>
+	<button id="btn3">单击3</button>
+	<script>
+		$('#btn1').slider({
+			bg:'pink',
+			text:'this is box1',
+			id:'box1',
+			left:100,
+			top:50,
+			isdrug:true
+		})
+		$('#btn2').slider({
+			bg:'skyblue',
+			text:'this is box2',
+			id:'box2',
+			left:150,
+			top:100,
+			isdrug:true
+		})
+		$('#btn3').slider({
+			/*width:300,
+			height:300,*/
+			bg:'purple',
+			text:'this is box3',
+			id:'box3',
+			left:200,
+			top:150,
+			isdrug:true
+		})
+	</script>
+</body>
+</html>

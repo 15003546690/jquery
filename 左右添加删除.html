@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;list-style: none;}
+		#box{
+			width: 500px;
+			height: 400px;
+			margin:50px auto;
+		}
+		#left{
+			width: 200px;
+			height: 400px;
+			float: left;
+			border:1px solid #ccc;
+			box-shadow: 60px;
+		}
+		#right{
+			width: 200px;
+			height: 400px;
+			float: left;
+			border:1px solid #ccc;
+			box-shadow: 60px;
+		}
+		#center{
+			width: 80px;
+			float: left;
+		}
+		#left li{
+			line-height: 40px;
+			margin-left:20px; 
+		}
+		#right li{
+			line-height: 40px;
+			margin-left:20px; 
+		}
+
+	</style>
+</head>
+<body>
+		<div id='box'>
+			<ul id='left'>
+				<li><input type="checkbox" value='1'>消灭星星1</li>
+				<li><input type="checkbox" value='2'>消灭星星2</li>
+				<li><input type="checkbox" value='3'>消灭星星3</li>
+				<li><input type="checkbox" value='4'>消灭星星4</li>
+				<li><input type="checkbox" value='5'>消灭星星5</li>
+				<li><input type="checkbox" value='6'>消灭星星6</li>
+				<li><input type="checkbox" value='7'>消灭星星7</li>
+				<li><input type="checkbox" value='8'>消灭星星8</li>
+				<li><input type="checkbox" value='9'>消灭星星9</li>
+			</ul>
+			<div id='center'>
+				<button id='add'>添加</button>
+				<button id='del'>删除</button>
+			</div>
+			<ol id='right'>
+			
+			</ol>
+		</div>
+	<script src='../jquery-2.1.1.js'></script>
+	<script>
+		$(function(){
+			var arr=[];
+			$('#add').on('click',function(){
+				$('#left li input:checked').each(function(){
+					var val=$(this).val();
+					var tet=$(this).parent().text();
+					if (arr.indexOf(val)==-1) {
+						$('<li><input type="checkbox" value='+val+' />'+tet+'</li>').appendTo('#right');
+						arr.push(val)
+					}
+				})
+			})
+			$('#del').on('click',function(){
+				$('#right li input:checked').each(function(){
+					var val=$(this).val();
+					$(this).parent().remove()
+					arr.splice(arr.indexOf(val),1)
+				})
+			})
+
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+.over_banner{height: 520px;background: url(../img/overSeas/overSeasbanner.jpg) center center;}
+.over_banner2{height: 127px;background: url(../img/overSeas/oversea_02.jpg) center center;}
+
+
+.over_main{height: 100%;overflow: hidden;width: 1000px;margin: 0 auto;}
+.over_main1{height: 100%;overflow: hidden;width: 1000px;}
+.global_tit{height: 47px;width: 1000px;}
+.global_tit li{height: 47px;width: 200px;text-align: center;line-height: 47px;color: #fff;float: left;font-size: 14px;}
+.global_tit li:nth-child(1){background: #fa114c;}
+.global_tit li:nth-child(2){background: #2cadb9;}
+.global_tit li:nth-child(3){background: #d75e7d;}
+.global_tit li:nth-child(4){background: #6e92cc;}
+.global_tit li:nth-child(5){background: #76b6a6;}
+.global_tit li.hover{height: 45px;width: 198px;border: 1px solid #333;color: #333;background: #fff;}
+.global_main{height: 385px;width: 998px;border: 1px solid #6D6D6D;border-top: none;}
+.global_main ul{height: 385px;width: 998px;background: #fff;position: relative;display: none;}
+.global_main ul.ulBlock{display: block;}
+.global_main ul li{float: left;border: 1px solid #00008B;position: absolute;}
+.global_main ul li img{display: block;height: 150px;width: 170px;position: absolute;right: 0;bottom: 10%;}
+.global_main ul li p:nth-child(1){line-height: 30px;}
+.global_main ul li p:nth-child(2){line-height: 34px;font-weight: 700;}
+.global_main ul li div p:nth-child(1){line-height: 40px;text-align: center;}
+.global_main ul li div p:nth-child(2){line-height: 20px;font-weight: 700;text-align: center;}
+.global_main ul li:nth-child(1) img{left: 0;}
+.global_main ul li:nth-child(1){height: 174px;width: 184px;top: 10px;left: 10px;border: none;}
+.global_main ul li:nth-child(2){height: 172px;width: 250px;top: 10px;left: 213px;}
+.global_main ul li:nth-child(3){height: 172px;width: 250px;top: 10px;left: 474px;}
+.global_main ul li:nth-child(4){height: 355px;width: 250px;top: 10px;left: 736px;}
+.global_main ul li:nth-child(5){height: 174px;width: 184px;top: 194px;left: 10px;border: none;}
+.global_main ul li:nth-child(6){height: 172px;width: 250px;top: 194px;left: 213px;}
+.global_main ul li:nth-child(7){height: 172px;width: 250px;top: 194px;left: 474px;}
+
+.floormain{height: 532px;width: 1000px;}
+.floormain .floor_left{float: left;height: 530px;width: 148px;border: 1px solid #A7A6A3;background: #fff;}
+.floormain .floor_left span{display: block;width: 148px; height: 100%;overflow: hidden;line-height: 30px;}
+.floormain .floor_left span h4{line-height: 45px;}
+
+.floormain .floor_cen{float: left;height: 532px;width: 320px;margin: 0 8px;}
+.floormain>.floor_cen>div{height: 260px;width: 320px;position: relative;overflow: hidden;}
+.floormain>.floor_cen>div>img{height: 260px;width: 320px;position: absolute;left: 0;top: 0;}
+.floormain .floor_right{float: left;height: 532px;width: 510px;}
+
+
+
+
+
+/*楼梯*/
+.stairs{height: 280px;width: 40px;background:rgba(000,000,000,0.2);position: fixed;right: 20px;bottom: 30px;border-radius: 4px;display: none;}
+.stairs li{height: 40px;width: 40px;margin: 5px 0;border-radius: 5px;color: #fff;text-align: center;line-height: 40px;cursor: pointer;background: #cd905a;}
+.stairs li.clicked{background: #fff;color: #333;}
+

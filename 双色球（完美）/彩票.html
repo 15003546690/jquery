@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="caipiao.css">
+</head>
+<body>
+	<div id='box'>
+		<h2>红球</h2>
+		<div id='red'></div>
+		<h2>篮球</h2>
+		<div id='blue'></div>
+		<br>
+		<button id='qk'>清空</button>
+		<button id='jx'>机选</button>
+		<button id='tz'>停止</button>
+		<div id='con'></div>
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(function(){
+			var str='',str1='';
+			var timer=null;
+			for (var i = 1; i <= 33; i++) {
+				if (i<10) {
+					str='0'+i
+					$('<span>'+str+'</span>').appendTo('#red')
+				}else{
+					str=i
+					$('<span>'+str+'</span>').appendTo('#red')
+				}
+			}
+			for (var j = 1; j <= 16; j++) {
+				if(j<10) {
+					str1='0'+j
+					$('<span>'+str1+'</span>').appendTo('#blue')
+				}else{
+					str1=j
+					$('<span>'+str1+'</span>').appendTo('#blue')
+				}
+			}
+			function jxauto(){
+				timer=setInterval(function(){
+					var arr=[],arr1=[]
+					$('#red span').removeClass()
+					$('#blue span').removeClass();
+					for (var i = 1; arr.length < 6; i++) {
+						var num=Math.floor(Math.random()*33+1)
+						if ($.inArray(num,arr)==-1) {
+							arr.push(num)
+							$('#red span').eq(num-1).addClass('red')
+						}
+					}
+					var num1=Math.floor(Math.random()*16+1)
+					$('#blue span').eq(num1-1).addClass('blue')
+				},100)
+			}
+			$('#jx').on('click',function(){
+				jxauto();
+				$(this).prop('disabled',true)
+			})
+			$('#tz').on('click',function(){
+				clearInterval(timer);
+				$('#jx').prop('disabled',false)
+			})
+			$('#qk').on('click',function(){
+				clearInterval(timer);
+				$('#red span').removeClass();
+				$('#blue span').removeClass();
+			})
+		})
+
+
+	</script>
+</body>
+</html>

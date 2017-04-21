@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul,li{list-style-type: none;}
+		#box{width:400px; height:200px; border:1px solid blue; margin:20px auto;}
+		#box ul{height:30px;}
+		#box ul  li{float: left;width:100px; text-align: center; line-height: 30px}
+		#info{height: 270px; }
+		#info div{height: 270px;display: none}
+	</style>
+</head>
+<body>
+	<div id='box'>
+		 <ul>
+		 	<li>1</li>
+		 	<li>2</li>
+		 	<li>3</li>
+		 	<li>4</li>
+		 </ul>
+		 <div id='info'>
+		 	<div style="display: block;">1111111这是第一个</div>
+		 	<div>22222222222这是第二个</div>
+		 	<div>3333333333这是第三个</div>
+		 	<div>44444444这是第四个</div>
+		 </div>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			$('ul li').on('click',function(){
+				var a=$(this).index()
+				$('ul').find('li').css('background','#fff')
+				$(this).css('background','red')
+				$('#info').find('div').css('display','none')
+				$('#info').find('div').eq(a).css('display','block')
+
+			})
+		})
+	</script>
+</body>
+</html>

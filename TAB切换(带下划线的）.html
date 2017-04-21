@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0; padding: 0}
+		#box{width:400px; height:300px; border:1px solid blue; margin:20px auto;}
+		#box ul{height:30px;}
+		#box ul  li{float: left;width:133px; text-align: center; line-height: 30px;list-style: none;}
+		#info{height: 270px; }
+		#info div{height: 270px;display: none}
+		#box ul li.bg{background: #fff}
+		#box ul li.bgg{background: red;border-bottom: solid 3px pink}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li>Component</li>
+			<li>Css</li>
+			<li>Js</li>
+		</ul>
+		<div id="info">
+			<div style="background: red;display: block">this is the Component</div>
+			<div style="background: yellow">this is the Css</div>
+			<div style="background: blue">this is the Js</div>
+		</div>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			$('ul>li').on('click',function(){
+				var a=$(this).index()
+				//$(this).addClass('bg').siblings().removeClass('bg')
+				$(this).addClass('bgg').siblings().removeClass('bgg')
+				$('#info').find('div').css('display','none')
+				$('#info').find('div').eq(a).css('display','block')
+			})
+		})
+	</script>
+</body>
+</html>

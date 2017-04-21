@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		#s_serie_id,#s_brand_id{
+			color:#666;
+			line-height:30px;
+		}
+		#s_serie_id div,#s_brand_id div{
+			border-bottom:1px solid #CCC;
+		}
+	</style>
+</head>
+<body>
+	<div class="crumbs-r">
+	  <div class="analog-select brand" data-flag = "1" data-branId="2">
+	   <div class="analog-select-text"><p>品牌</p></div>
+		   <div class="analog-select-con">
+			   <div class="analog-select-conText" id="s_brand_id">
+			   	   <!--此处渲染内容，不允许使用select来实现-->
+
+			   </div>
+		   </div>
+	   </div>
+	   <div class="analog-select" data-flag = "1">
+			<div class="analog-select-text" id="down"><p id="pp">车系</p></div>
+				<div class="analog-select-con">
+				    <div class="analog-select-conText" id="s_serie_id">
+				    	<!--此处渲染内容，不允许使用select来实现-->
+				    </div>
+				</div>
+			</div>
+			<input type="button" value="选车" class="choose-btn" id="search_serie">
+		</div>
+	</div>
+   </div>
+   <script src='js/jquery-2.1.1.js'></script>
+   <script src="js/data.js"></script>
+   <script src='js/chao.js'></script>
+</body>
+</html>

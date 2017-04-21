@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{width: 400px;height: 500px;border: solid 1px;margin: 0 auto}
+		.max{width: 50px;border: solid 1px;height:30px;float: left;}
+		.min{width: 50px;border: solid 1px;height:30px;float: right;}
+		#content{width: 400px;margin-top: 33px}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<span class='max'>放大</span>
+		<span class='min'>缩小</span>
+		<div id="content">
+			福建阿里就发了的时间立法精神的房间卡的手机发了科技发达是开了房间爱的看了附件拉的是客服就爱的深刻了附近拉萨的减肥啦的时间立法精神的房间卡的手机发了科技发达是开了房间爱的看了附件拉的是客服就爱的深刻了附近拉萨的减肥啦
+			的时间立法精神的房间卡的手机发了科技发达是开了房间爱的看了附件拉的是客服就爱的深刻了附近拉萨的减肥啦
+		</div>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+	$(function(){
+		$('#box span').on('click',function(){
+			var txts=$('#content').css('fontSize')
+			var txtFl=parseFloat(txts)
+			var mm=$(this).attr('class');
+			if(mm=='max'){
+				txtFl+=2
+			}else if(mm=='min'){
+				txtFl-=2
+				
+			}
+			$('#content').css('fontSize',txtFl+'px')
+		})
+	})
+		
+	</script>
+</body>
+</html>

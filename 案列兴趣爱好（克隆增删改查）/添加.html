@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	#box{width: 530px;}
+	ul,li{list-style: none;}
+	#list li{float: left;margin: 10px;width: 100px;height: 27px;background: url(img/bg.jpg) center 0;line-height: 27px;text-align: center;cursor: pointer;}
+	#list .bg{background: url(img/bg.jpg) center 54px;}
+
+	#text{height: 30px;width:160px;background: url(img/add.jpg);border: none;float: left;padding-left:5px; }
+	#btn{width: 73px;height: 30px;background: url(img/add.jpg) 71px 0;border: none;}
+	p{background: url(img/tip.jpg) no-repeat center bottom;height:30px;line-height:30px;padding-left:10px;font-size: 10px;float: right;display: none;}
+
+	#add li{float: left;margin: 10px;width: 100px;height: 27px;background: url(img/bg.jpg) center 54px;line-height: 27px;text-align: center;position: relative;}
+	span{background:url(img/bg.jpg) 20px 108px;position:absolute;left:80px;width: 20px;height: 20px;}
+	
+	</style>
+</head>
+<body>
+<div id="box">
+	<ul id='list'>
+		<li>漫画</li>
+		<li>音乐</li>
+		<li>电影</li>
+		<li>运动</li>
+		<li>小说</li>
+		<li>画画</li>
+		<li>唱歌</li>
+		<li>健身</li>
+	</ul>
+	<input type="text" id='text' placeholder='请输入需要添加的标签'>
+	<input type="button" id='btn' value='添加爱好'>
+	<p>您最多只能选择三项兴趣爱好，不可以选择更多哦</p>
+	<div id="inp">
+		<ul id='add'></ul>
+	</div>
+</div>
+<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(document).ready(function(){
+			$('#list li').on("click",function(){
+				if($('#add li').length>=3){
+					$('p').show()
+				}else{
+					var val=$(this).text();
+					addli(val);
+					$(this).addClass('bg')
+				}
+			})
+
+			$('#btn').on('click',function(){
+				if($('#text').val()==''){
+					alert('不能为空')
+				}else if($('#add li').length>=3){
+					$('p').show()
+				}else{
+					var val=$.trim($('#text').val());
+					addli(val);
+					$('#text').val('')
+				}
+				
+			})
+			//封装添加li的函数
+			function addli(val){
+				$('#add').append('<li>'+val+'<span></span></li>')
+			}
+          
+			$('#add').on('click','span',function(){
+				$("p").hide()
+				var val=$(this).parent().text();
+				$(this).parent().remove();
+				$('#list li:contains('+val+')').removeClass('bg')
+			})
+		})
+	</script>
+</body>
+</html>

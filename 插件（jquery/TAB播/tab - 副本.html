@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab切换</title>
+    <link rel="stylesheet" href="tab.css"/>
+   <style>
+
+
+   </style>
+</head>
+<body>
+    <div class="tab">
+        <!--tab导航-->
+       <div class="navhd">
+           <ul id="tavNav" class="clearfix">
+               <li class='high'>新闻</li>
+               <li>娱乐</li>
+               <li>体育</li>
+               <li>音乐</li>
+               <li>财经</li>
+           </ul>
+           <div class="button">
+               <span class="btn prevBtn">前一个</span>
+               <span class="btn nextBtn">后一个</span>
+           </div>
+       </div>
+        <!-- tab内容区-->
+        <div id="tabView">
+           <div id="tabCon">
+               <div>新闻内容</div>
+               <div>娱乐内容</div>
+               <div>体育内容</div>
+               <div>音乐内容</div>
+               <div>财经内容</div>
+           </div>
+        </div>
+    </div>
+
+    <script src="jquery-2.1.1.js"></script>
+    <script>
+      $(function(){
+        $('#tavNav').tab({
+            select:'#tabCon',
+            direction:'top',
+            effect:'sli',
+            prev:'.prevBtn',
+            next:'.nextBtn',
+            isPlay:true,
+            even:'click'
+        })
+      })
+       ;(function($){
+          $.fn.tab=function(opt){
+            function getOpt(){
+              return $.extend({},{
+                select:'#tabCon',
+                direction:'top',
+                effect:'sli',
+                prev:'.prevBtn',
+                next:'.nextBtn',
+                isPlay:true,
+                even:'click',
+                index:0,
+                time:1000,
+                speed:500
+              },opt);
+            };
+            var set=getOpt();
+
+            var self=$(this),
+                li=self.children('li'),
+                len=li.length,
+                box=$(set.select),
+                w=box.children('div').first().width(),
+                h=box.children('div').first().height();
+
+            if(set.direction=='left'){
+              box.width(len*w);
+            };
+            if(set.direction=='top'){
+              box.height(len*h);
+            };
+
+            var timer=null, ind=set.index;
+
+            function autoPlay(){
+              timer=setInterval(move,set.time)
+            }
+
+            function move(){
+              ind++;
+              if(ind>len-1){
+                ind=0
+              }
+              change(ind);
+            }
+            function change(i){
+              li.eq(i).addClass('high').siblings().removeClass('high');
+              if(set.effect=='slide'){
+                if(set.direction=='left'){
+                   box.stop().animate({'marginLeft':-w*i},set.speed)
+                }else if(set.direction=='top'){
+                  box.stop().animate({'marginTop':-h*i},set.speed)
+                }
+              }else{
+                box.children('div').hide().eq(i).fadeIn(set.speed).siblings().fadeOut(set.speed);
+              }
+            }
+
+            if(set.isPlay){
+              autoPlay();
+              $('.tab').hover(function(){
+                clearInterval(timer);
+              },function(){
+                autoPlay();
+              })
+            }
+
+            $(set.prev).on(set.even,function(){
+              if(box.is(':animated')) return false;
+              ind--;
+              if(ind<0){
+                ind=len-1
+              }
+              change(ind);
+            })
+
+            $(set.next).on(set.even,function(){
+              if(box.is(':animated')) return false;
+              move();
+            })
+
+          };
+        })($)
+    </script>
+</body>
+</html>

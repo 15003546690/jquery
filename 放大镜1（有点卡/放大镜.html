@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			width: 600px;
+			height: 300px;
+		}
+		#small{
+			width: 200px;
+			height: 200px;
+			float: left;
+			position: relative;
+			border:1px solid #ccc;
+		}
+		#small img{
+			width: 200px;
+			height: 200px;
+		}
+		#big{
+			width: 200px;
+			height: 200px;
+			float: right;
+			overflow: hidden;
+			position: relative;
+			border:1px solid #ccc;
+		}
+		#big img{
+			width: 600px;
+			height: 600px;
+			position: absolute;
+		}
+		#bx{
+			width: 50px;
+			height: 50px;
+			opacity: 0.6;
+			background:#ccc;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id='box'>
+		<div id='small'>
+			<img src="1.jpg" alt="">
+		</div>
+		<div id="bx"></div>
+		<div id='big'>
+			<img src="1.jpg" alt="">
+		</div>
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(function(){
+			$('#small').on('mouseover',function(e){
+				$('#bx').show()
+				$('#big').show()
+				var smallW=e.pageX-$(this).offset().left-$('#bx').width()/2;
+				var smallT=e.pageY-$(this).offset().top-$('#bx').height()/2;
+				var maxW=$(this).outerWidth()-$('#bx').width()
+				var maxT=$(this).outerHeight()-$('#bx').height()
+				if (smallW>maxW) {
+					smallW=maxW
+				}
+				if (smallT>maxT) {
+					smallT=maxT
+				}
+				if (smallT<0) {
+					smallT=0
+				}
+				if (smallW<0) {
+					smallW=0
+				}
+				var s=$('#small img').width()/$('#bx').width();
+				$('#big img').css({'width':s*$('#big').width(),'height':s*$('#big').height()})
+				$('#bx').css({'left':smallW,'top':smallT});
+				$('#big img').css({'left':-smallW*s,'top':-smallT*s})
+			})
+			
+		})
+
+	</script>
+</body>
+</html>

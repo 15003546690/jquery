@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加授权</title>
+	<link rel="stylesheet" href="css/demo.css">
+	<script src="js/jquery-1.7.1.js"></script>
+	<script src="js/demo.js"></script>
+</head>
+<body>
+	<div class="accredit">
+		<ul id="all">
+			<li><input type="checkbox" value="1">消灭星星1</li>
+			<li><input type="checkbox" value="2">消灭星星2</li>
+			<li><input type="checkbox" value="3">消灭星星3</li>
+			<li><input type="checkbox" value="4">消灭星星4</li>
+			<li><input type="checkbox" value="5">消灭星星5</li>
+			<li><input type="checkbox" value="6">消灭星星6</li>
+			<li><input type="checkbox" value="7">消灭星星7</li>
+			<li><input type="checkbox" value="8">消灭星星8</li>
+		</ul>
+		<p><button id="add">添加</button><br/><button id="del">删除</button></p>
+		<ol id="yet"></ol>
+	</div>
+
+
+	<div id="playList">
+		<input type="checkbox" value="歌曲1" />歌曲1<br />
+		<input type="checkbox" value="歌曲2" />歌曲2<br />
+		<input type="checkbox" value="歌曲3" />歌曲3<br />
+		<input type="checkbox" value="歌曲4" />歌曲4<br />
+		<input type="checkbox" value="歌曲5" />歌曲5<br />
+		<input type="checkbox" value="歌曲6" />歌曲6
+	</div>
+	<input type="button" value="全选" id="selectAll" />
+	<input type="button" value="全不选" id="unSelect" />
+	<input type="button" value="反选" id="reverse" />
+	<input type="button" value="提交" id="btnsumit">
+
+
+	<ul>
+		<li>list item 1</li>
+		<li>list item 2
+			<ul>
+				<li>list item 2-a</li>
+				<li>list item 2-b</li>
+			</ul>
+		</li>
+		<li>list item 3</li>
+		<li>list item 4</li>
+	</ul>
+
+
+
+
+
+
+
+
+<script>
+
+	$(function () {
+
+		$('li').has('ul').css('background-color', 'red');
+
+
+
+		$("#selectAll").click(function () {//全选
+			$("#playList :checkbox").prop("checked", true);
+		});
+
+		$("#unSelect").click(function () {//全不选
+			$("#playList :checkbox").prop("checked", false);
+		});
+
+		/*$("#reverse").click(function () {//反选
+			$("#playList :checkbox").each(function () {
+				$(this).prop("checked", !$(this).prop("checked"));
+			});
+		});*/
+
+		$("#unSelect").click(function () {//全不选
+
+			$("#playList :checkbox").not($(":checked")).prop("checked",true);
+
+		})
+
+
+
+		$("#btnsumit").click(function () {//提交显示相应的val值
+			$("#playList :checked").each(function () {
+				  var vals=$(this).val();
+				  alert(vals);
+			});
+		});
+
+
+
+	});
+</script>
+</body>
+</html>

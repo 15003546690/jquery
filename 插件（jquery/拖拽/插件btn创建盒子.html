@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+
+	</style>
+</head>
+<body>
+	<button id='btn'>点击</button>
+	<button id='btn1'>点击</button>
+	<script src='../jquery-2.1.1.js'></script>
+	<script src='jquerytd.js'></script>
+	
+	<script>
+		$(function(){
+			$('btn').td({
+				'istd':true,
+				'width':300,
+				'height':300,
+				'id':'box',
+				'btn':'btn',
+				'bg':'red',
+				'left':200,
+				'top':200
+			});
+
+			$('btn1').td({
+				'istd':true,
+				'width':300,
+				'height':300,
+				'id':'box1',
+				'btn':'btn1',
+				'bg':'blue',
+				'left':600,
+				'top':400
+			})
+		})
+	</script>
+</body>
+</html>

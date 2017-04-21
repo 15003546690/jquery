@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	   *{
+	   	margin:0;
+	   	padding: 0;
+	   }
+	   .box{
+	   	width: 1000px;
+	   	height: 500px;
+	   	border:solid 1px;
+	   }
+	   .top{
+	   	height: 200px
+	   }
+	   .top dl{
+	   	width: 700px;
+	   	float: left;
+	   }
+       .top dl dt{
+       	float: left;
+       }
+       .top dl dd{
+       	margin-bottom: 15px;
+       }
+       .change{
+       	float: right;
+       }
+       .gw{
+       	 border:solid 1px;
+       	 padding: 5px
+       }
+       p{
+       	margin-bottom: 10px
+       }
+       .result{
+       	margin-top: 50px;
+       	 clear:both;
+       	 border-top: solid 1px;
+         line-height: 50px;
+         font-size: 20px;
+       }
+       em,.num{
+       	color: red
+       }
+	</style>
+</head>
+<body>
+	<div class='box'>
+		 <div class='top'>
+		 	 <dl>
+		 	 	<dt><img src="img/4.jpg" alt=""></dt>
+		 	 	<dd><b>成功管理者</b></dd>
+		 	 	<dd>￥1200</dd>
+		 	 	<dd>赠《穿布鞋的马云》一本！年终送给管理者的最给力的福利！</dd>
+		 	 </dl>
+		 	 <div class='change'>
+		 	 	 <p>单价：￥<label for="">360</label></p>
+		 	 	 <p>数量：<span class="cut">-</span>
+		 	 	        <input type="text" value="1" class="txt">
+		 	 	        <span class="add">+</span>
+		 	 	 </p>
+		 	 	 <b class='gw'>购物</b>
+		 	 </div>
+		 </div>
+		 <div class='top'>
+		 	 <dl>
+		 	 	<dt><img src="img/4.jpg" alt=""></dt>
+		 	 	<dd><b>成功管理者</b></dd>
+		 	 	<dd>￥1200</dd>
+		 	 	<dd>赠《穿布鞋的马云》一本！年终送给管理者的最给力的福利！</dd>
+		 	 </dl>
+		 	 <div class='change'>
+		 	 	 <p>单价：￥<label for="">180</label></p>
+		 	 	 <p>数量:<span class="cut">-</span>
+		 	 	        <input type="text" value="1" class="txt">
+		 	 	        <span class="add">+</span>
+		 	 	 </p>
+		 	 	 <b class='gw'>购物</b>
+		 	 </div>
+		 </div>
+        <!-- 结算 -->
+         <div class='result'>
+         	<h6>您已经准备学习<span class='num'>2</span>课,学费总计￥<em>720</em></h6>
+            
+         </div>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		 $(function(){
+
+               $('.change').find('.add').on('click',function(){
+              	  var  n=parseInt($(this).prev().val());
+              	  n++;
+              	  if (n>10) {
+              	  	return ;
+              	  }
+              	  $(this).prev().val(n);
+              	  price();
+
+               })
+
+               //减
+               $('.change').find('.cut').on('click',function(){
+              	  var  j=parseInt($(this).next().val());
+              	  j--;
+              	  if (j<1) {
+              	  	 if (confirm('确定要删除吗？')) {
+              	  	 	 $(this).parents('.top').remove();
+              	  	 	 kelen();
+              	  	 }else{
+              	  	 	j=1;
+              	  	 }
+              	  }
+              	  
+              	  $(this).next().val(j);
+              	  price();
+               })
+           
+	           function   kelen(){
+	             $('.num').text($('.top').length)
+	           }
+		      kelen();
+
+		      function   price(){
+		      	   var   result=0;
+                  $('.top').each(function(){
+                  	  var  number=$(this).find('.txt').val();
+                  	  var  unit=$(this).find('label').text();
+                       result+=number*unit;
+                       
+                  })
+                   $('.result').find('em').text(result) 
+
+		      }
+		      price();
+		 })
+	</script>
+
+</body>
+</html>

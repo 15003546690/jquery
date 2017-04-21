@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{height: 2000px;position: relative;}
+		#top{width: 100px;height: 100px;background: red;position: fixed;right: 0px;bottom: 0px;display: none}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="top">
+			
+		</div>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			$(window).scroll(function(){
+				var wh=$(window).height()
+				var top=$(window).scrollTop()
+				if(top>wh){
+					$('#top').show()
+				}else{
+					$('#top').hide()
+				}
+			})
+			$('#top').on('click',function(){
+				$(document.body).animate({'scrollTop':0},1000)
+				$(document.documentElement).animate({'scrollTop':0},1000)
+			})
+		})
+
+	</script>
+</body>
+</html>

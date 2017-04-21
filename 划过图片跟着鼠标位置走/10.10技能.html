@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		img{
+			width: 250px;
+			height: 150px
+		}
+		#box{
+			width: 1100px;
+			height: 500px;
+			position: relative;
+		}
+		ul li{
+			list-style: none;
+			float: left;
+		}
+		ol{
+			float: left;
+			list-style: none;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><img src="images/img2.jpg"></li>
+			<li><img src="images/img3.jpg"></li>
+			<li><img src="images/img4.jpg"></li>
+			<li><img src="images/img5.png"></li>
+		</ul>
+		<ol>
+			
+		</ol>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$("ul>li img").hover(function(e){
+			var imgs=$('<img src='+this.src+'>')
+			$('ol').append(imgs)
+			$('ol').css({'left':e.pageX,'top':e.pageY})
+		},function(){
+			$("ol").empty();
+		})
+	</script>
+</body>
+</html>

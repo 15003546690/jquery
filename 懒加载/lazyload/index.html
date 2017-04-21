@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <style>
+        ul{
+            list-style: none;
+            width: 600px;
+            margin: 0 auto;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul li{
+            border: 1px solid red;
+            margin-top: 10px;
+            position: relative;
+            height: 300px;
+            padding: 5px;
+        }
+        ul li img{
+            
+            height: 300px;
+            width: auto;
+            background: url(./images/loading.gif) no-repeat center;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <ul id="box">
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/1.jpg"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/2.jpg"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/3.jpg"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/4.jpg"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/5.png" data-lazyTime="300ff"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/7.png"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="./images/8.jpg"></li>
+        <li><img src="./images/pixel.gif" alt="" data-src="http://img1.3lian.com/2015/w7/98/d/22.jpg"></li>
+    </ul>
+    <script>
+        lazyload({
+            elem:"box",
+            lazyTime:300,
+            lazyRange:100
+        })
+        function lazyload(option){
+            var box=option.elem?document.getElementById("box"):document;
+            if(!box)return false;
+            var img=box.getElementsByTagName("img"),
+                imgArr=[];
+            for(var i=0,len=img.length;i<len;i++){
+                var temp=img[i];
+                if(temp.getAttribute("data-src")){
+                    if(isloader(temp)){
+                        if(option.lazyTime){
+                            
+                            _setImg(temp)
+                        }else{
+                            setImg(temp)
+                        }
+                    }else{
+                       imgArr.push(temp); 
+                    }
+                }
+            }
+            function _setImg(temp){
+                setTimeout(function(){
+                    setImg(temp)
+                },option.lazyTime+ ~~temp.getAttribute("data-lazyTime"))
+            }
+            function setImg(temp){
+                temp.src=temp.getAttribute("data-src")
+            }
+            function isloader(temp){
+                var clientH=document.documentElement.clientHeight||document.body.clientHeight,
+                    scrollTop=document.documentElement.scrollTop||document.body.scrollTop,
+                    hg=clientH+scrollTop + ~~option.lazyRange,
+                    offsetT=0;
+                while(temp.offsetParent){
+                   offsetT+=temp.offsetTop;
+                    temp=temp.offsetParent;
+                }
+                return hg>offsetT;
+                 
+            }
+            len=imgArr.length;
+            function isScroll(){
+                
+                for(var i=0;i<len;i++){
+                    var temp=imgArr[i];
+                    if(isloader(temp)){
+                        _setImg(temp);
+                        imgArr.splice(i,1);
+                        len--;
+                        i--;
+                        if(!imgArr.length){
+                            window.removeEventListener?window.removeEventListener("scroll",isScroll,false):window.detachEvent("onscroll",isSroll) 
+                        }
+                    }
+                }
+            }
+            window.addEventListener?window.addEventListener("scroll",isScroll,false):window.attachEvent("onscroll",isSroll)
+        }
+        
+        
+        
+    </script>
+</body>
+</html>

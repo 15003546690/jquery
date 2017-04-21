@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+	<style>
+    	*{margin:0;padding:0;}
+		body{
+			background:url('images/bg.jpg') no-repeat;
+			background-size:cover;
+		}
+		.div1{
+			width:600px;
+			height:600px;
+			margin:30px auto;
+		}
+		.div1 span{
+			width:200px;
+			height:200px;
+			float:left;
+		}
+		.div1 span img{
+			width:190px;
+			height:190px;
+			border-radius:10px;
+		}
+		.div2{
+			width:400px;
+			height:500px;
+			position:absolute;
+			top:80px;
+			left:27.8%;
+			display:none;
+		}
+		.div2 img{
+			width:600px;
+			height:500px;
+			position:absolute;
+			border-radius:10px;
+		}
+		.div3{
+			width:100%;
+			height:100%;
+			position:absolute;
+			left:0;
+			top:0;
+			background:rgba(0,0,0,0.6);
+			display:none;
+		}
+		.div3 span{
+			width:40px;
+			height:60px;
+			color:#fff;
+			font-size:40px;
+			position:absolute;
+			top:46%;
+			border:1px solid white;
+			text-align: center;
+			line-height:60px;
+		}
+		.div3 span:nth-child(1){
+			left:5%;
+		}
+		.div3 span:nth-child(2){
+			right:5%;
+		}
+		.tl{animation:1s detailsLeftHide;}
+		.tr{
+			animation:1s detailsdetailsRightShow;
+		}
+		@keyframes detailsRightShow{
+			0%{ }
+			40%{ transform:translateX(300px) scale(1.1) rotateY(80deg);}
+			100%{transform:translate(0,0) scale(1) rotateY(0);}
+		}
+		@keyframes detailsLeftHide{
+			0%{}
+			50%{ transform:translateX(100px)rotateY(-60deg);}
+			100%{ transform:translate(0,0) scale(1) rotateY(0);}
+		}
+    </style>
+    <script type="text/javascript" src="jquery-2.2.0.js" ></script>
+</head>
+<body>
+	<div class='div1'>
+		<span><img src='images/main/1.jpg'></span>
+		<span><img src='images/main/2.jpg'></span>
+		<span><img src='images/main/3.jpg'></span>
+		<span><img src='images/main/4.jpg'></span>
+		<span><img src='images/main/5.jpg'></span>
+		<span><img src='images/main/6.jpg'></span>
+		<span><img src='images/main/7.jpg'></span>
+		<span><img src='images/main/8.jpg'></span>
+		<span><img src='images/main/9.jpg'></span>
+	</div>
+	<div class='div3'>
+		<span class="pre">&lt;</span>
+		<span class="next">&gt;</span>
+	</div>
+	<div class='div2'>
+		<img src='images/show/0/1.jpg'>
+		<img src='images/show/0/2.jpg'>
+		<img src='images/show/0/3.jpg'>
+		<img src='images/show/0/4.jpg'>
+		<img src='images/show/0/5.jpg'>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$('.div1 span').click(function(){
+			//alert($(this).index())
+			$('.div3').fadeIn(500);
+			var $index=$(this).index(),
+				$length=$('.div2 img').length;
+				//alert($length);
+			for(var i=0;i<$length;i++){
+				var src='images/show/'+$index+'/'+(i+1)+'.jpg'
+				$('.div2 img').eq(i).attr('src',src)
+			}
+			$('.div2').fadeIn(500);
+		})
+		$('.div3').click(function(){
+			$(this).fadeOut(500);
+			$('.div2').fadeOut(500);
+		})
+		$('.pre').click(function(e){
+			e.stopPropagation();
+			//alert(1)
+			// $('.div2 img').filter(':last').animate({'transform':'translateX(200px) rotateY(45deg)'},500,function(){
+			// 	$(this).prependTo($('.div2')).animate({'left':'0'},500)
+			// })
+			$('.div2 img').filter(':last').attr('class','tl')
+			//$('.div2').attr('class','tr')
+			// $('.div2').animate({'left':'22%'},500,function(){
+			// 	$(this).animate({'left':'27.8%'},500)
+			// })
+
+		})
+		$('.next').click(function(e){
+			e.stopPropagation();
+			//alert(2)
+			$('.div2 img').filter(':first').animate({'left':'200'},500,function(){
+				$(this).appendTo($('.div2')).animate({'left':'0'},500)
+			})
+			$('.div2').animate({'left':'22%'},500,function(){
+				$(this).animate({'left':'27.8%'},500)
+			})
+		})
+
+	})
+</script>
+</html>

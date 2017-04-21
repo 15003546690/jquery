@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 500px;
+		}
+		.redbox{
+			width: 500px;
+			height: 250px;
+		}
+		p{
+			width: 50px;
+			height: 30px;
+			background: #0f0;
+			text-align: center;
+			line-height: 30px;
+			color: #fff;
+			font-weight: 800;
+			float: left;
+		}
+		.red{
+			float: left;
+		}
+		.red span{
+			float: left;
+			width: 30px;
+			height: 30px;
+			margin: 10px;
+			border-radius: 15px;
+			color: #f00;
+			line-height: 30px;
+			text-align: center;
+		}
+		.active_red{
+			background: pink;
+		}
+		.active_blue{
+			background: pink;
+		}
+		.bluebox{
+			width: 500px;
+			height: 150px;
+		}
+		.blue{
+			float: left;
+		}
+		.blue span{
+			float: left;
+			width: 30px;
+			height: 30px;
+			margin: 10px;
+			border-radius: 15px;
+			color: #00f;
+			line-height: 30px;
+			text-align: center;
+		}
+		input{
+			margin: 20px;
+			width: 50px;
+			height: 30px;
+			font-size: 16px;
+			text-align: center;
+			line-height: 30px;
+			border: none;
+			background: #f00;
+			outline: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="redbox">
+			<p>红球：</p>
+			<div class="red">
+				<span></span>
+			</div>
+		</div>
+		<div class="bluebox">
+			<p>篮球：</p>
+			<div class="blue">
+				<span></span>
+			</div>
+		</div>
+		<div>
+			<input id="btn1" type="button" value="清空">
+			<input id="btn2" type="button" value="机选">
+			<input id="btn3" type="button" value="完成">
+		</div>
+	</div>
+	
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			//页面中输出数字
+			var str1="",str2="",arr1=[],arr2=[];
+			for(var i=1;i<=33;i++){
+				str1+="<span>"+i+"</span>";
+				arr1.push(i);
+				if(i<=16){
+					str2+="<span>"+i+"</span>";
+					arr2.push(i);
+				}
+			}
+			$(".red").html(str1);
+			$(".blue").html(str2);
+
+			
+			//机选按钮
+			$("#btn1").on("click",function(){
+				$(".red span").removeClass("active_red");
+				$(".blue span").removeClass("active_blue");
+			})
+			$("#btn2").on("click",function(){
+				time=setInterval(change,200);
+				$(this).prop("disabled",true);
+			})
+			$("#btn3").on("click",function(){
+				clearInterval(time);
+				$("#btn2").prop("disabled",false);
+			})
+
+			//随机数筛选
+			function change(){
+				arr1=[];
+				for(var i=1;i<=33;i++){
+					arr1.push(i);
+				};
+
+				$(".red span").removeClass("active_red");
+				$(".blue span").removeClass("active_blue");
+				for(var i=0;i<6;i++){
+					var num=Math.floor(Math.random()*arr1.length);
+
+					$(".red>span:nth-child("+arr1[num]+")").addClass("active_red");
+
+					arr1.splice(num,1);	
+					console.log(arr1);
+				}
+				var nums=Math.floor(Math.random()*16);
+				$(".blue span").eq(nums).addClass("active_blue");
+			}
+
+		})		
+	</script>
+</body>
+</html>

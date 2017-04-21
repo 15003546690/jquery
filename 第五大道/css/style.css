@@ -1,0 +1,219 @@
+
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,td,form,input,select,textarea,span,img,a,em,strong,*{ margin:0; padding:0;}
+body{ font-family:"宋体"; font-size:12px; color:#000000; background:#ffffff;}
+ul,ol,li{ list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-size:14px;}
+input,select,textarea{ vertical-align:middle;}
+img{ border:none; vertical-align:middle;}
+a{ text-decoration:none; color:#000000;}
+a:hover{ color:#009999;}
+.clear{ clear:both; height:0px; width:0px; overflow:hidden;}
+/*box*/
+#box{
+	width: 1349px;
+	height: 6590px;
+}
+/*header*/
+#header{
+	height: 140px;
+}
+.header_top{
+	height: 28px;
+	background: #f2f2f2
+}
+	.header_top ul{
+		margin-left: 72px;
+		width: 400px;
+		height: 28px;
+		float: left
+	}
+	.header_top ul li{
+		margin-left:10px;
+		float: left;
+		line-height: 28px
+	}
+	.header_top ol{
+		margin-left: 72px;
+		width: 600px;
+		height: 28px;
+		line-height: 28px;
+		float: right
+	}
+	.header_top ol li{
+		margin-left:10px;
+		float: left;
+		line-height: 28px
+	}
+#logo{
+	height: 97px;
+	margin-left: 69px;
+	margin-top: 15px
+}
+	#logo p{
+		float: left
+	}
+	#logo .fm{
+		width: 465px;
+		height: 97px;
+		float: left;
+		margin-left: 25px;
+	}
+	#logo .fm .ta{
+		width: 364px;
+		height: 36px;
+		margin-top: 20px;
+		border: solid 1px #c69c6d
+	}
+	#logo .fm .ba{
+		width: 93px;
+		height: 38px;
+		background: #c69c6d;
+		border: solid 1px #c69c6d;
+		margin-top: 20px
+	}
+	#logo .fm p a{ 
+		margin: 10px;
+		color: #999999
+	}
+	#logo .fm p a:hover{
+		color: blue
+	}
+	#logo .fm p{
+		margin-top: 10px
+	}
+	#logo h1{
+		width: 128px;
+		height: 28px;
+		border: solid 1px #999999;
+		float: right;
+		margin-right: 80px;
+		margin-top: 22px;
+		padding-left: 10px;
+		padding-top: 5px;
+	}
+		#logo h1 span{
+			color: red
+		}
+		#logo h1 a{
+			line-height: 27px
+		}
+/*move*/
+#move{
+	height: 556px;
+}
+	#move .top{
+		height: 37px;
+		background:url(../images/movex.gif) 
+	}
+	#move .top .bg{
+		background: #cf0101
+	}
+	#move .top p{
+		width: 129px;
+		line-height: 37px;
+		text-align: center;
+		margin-left: 70px;
+		color: #fff;
+		float: left;
+		font-weight: bold;
+	}
+	#move .top ul{
+		width: 820px;
+		height: 37px;
+		float: left
+	}
+		#move .top ul li{
+			height: 30px;
+			float: left;
+			padding: 0 35px 0 35px;
+			margin-top: 13px
+		}
+		#move .top .mxia{
+			width: 20px;
+			height: 25px;
+			position: absolute;
+			top: 147px;
+			left: 890px
+		}
+		#move .top ul li a{
+			color: #c8a985;
+		}
+		#move .top ul li a:hover{
+			color: red
+		}
+	#move .top ol{
+		width: 220px;
+		height: 30px;
+		float: right;
+		margin-right: 80px;
+		margin-top: 7px;
+	}
+	#move .top ol li{
+		float: right;
+		margin-right: 20px
+	}
+	#move .center{
+		float: left
+	}
+	#box1 ul li{
+		float: left
+	}
+	#box1{
+		position: relative;
+	}
+	#box1 ol{
+		position:absolute;
+		width: 170px;
+		height: 15px;
+		background: #918f8f;
+		top: 491px;
+		left: 570px;
+		padding-left: 30px;
+		padding-top: 5px
+	}
+	#box1 ol .bg{
+		background: red;
+	}
+	#box1 ol li{
+		width: 12px;
+		height: 12px;
+		background: #b7b6b4;
+		border-radius: 12px;
+		float: left;
+		margin-right: 10px;
+	}
+	#left{
+		position: absolute;
+		left: 175px;
+		top: 207px
+	}
+	#right{
+		position: absolute;
+		left: 1190px;
+		top: 207px
+	}
+/*品牌旗舰*/
+#ppqj{
+	height: 690px;
+	background: red;
+}
+	#ppqj .top{
+		margin-left: 72px;
+		padding-top: 35px
+	}
+	#ppqj ul{
+		width: 1207px;
+		height: 330px;
+		margin-left: 70px;
+		margin-top:23px; 
+	}
+	#ppqj ul li{
+		float: left;
+		margin-right: 7px
+	}
+	#ppqj .hot{
+		width: 1207px;
+		height: 240px;
+		margin-left: 70px;
+		background: blue
+	}

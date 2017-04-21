@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0; padding: 0}
+		#tab{width: 300px;line-height: 25px;border-collapse: collapse;margin: 20px auto;text-align: center;}
+		#phone tr td{border: solid 1px;}
+		#th tr td{border: solid 1px;}
+		#tf input{width: 250px}
+	</style>
+</head>
+<body>
+	<table id="tab">
+		<thead id="th">
+			<tr>
+				<td>姓名</td>
+				<td>电话号码</td>
+			</tr>
+		</thead>
+		<tbody id="phone">
+			<tr>
+				<td>王忠伟</td>
+				<td>18201439200</td>
+			</tr>
+			<tr>
+				<td>赵志冲</td>
+				<td>13438898900</td>
+			</tr>
+			<tr>
+				<td>贾宝龙</td>
+				<td>18283838475</td>
+			</tr>
+			<tr>
+				<td>赵志冲</td>
+				<td>13438898901</td>
+			</tr>
+		</tbody>
+		<tfoot id="tf">
+			<tr>
+				<th colspan="2"><input type="text" placeholder="请输入要查找的联系人" id="text"><button id="btn">搜索</button></th>
+			</tr>
+		</tfoot>	
+	</table>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+				$("#btn").on("click",function(){
+					var val=$("#text").val();
+					$("#phone tr").hide().filter(":contains("+val+")").show().css("background","red")
+				})
+				$('#text').on('keydown',function(e){
+					if(e.keyCode==13){
+						var val=$("#text").val();
+						$("#phone tr").hide().filter(":contains("+val+")").show().css("background","red")
+						}
+				})
+				
+			/*$('#btn').on('click',function(){
+				$('#phone>tr>td').each(function(){
+					var val=$(this).text()
+					var val1=$('#text').val()
+					if(val1==val){
+						$(this).parent().show().siblings().hide()
+					}
+				})
+				
+				
+			})*/
+		})
+	</script>
+</body>
+</html>

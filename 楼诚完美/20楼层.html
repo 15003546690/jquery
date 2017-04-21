@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20楼层</title>
+	
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#wrap{
+			position: relative;
+		}
+		#wrap img{
+			width: 100%;
+			float: left;
+			height: 655px;
+		}
+		#wrap ul{
+			position: fixed;
+			right: 0;
+			bottom: 50px;
+			display: none;
+			width: 100px;
+		}
+		#wrap ul li{
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			padding-left: 17px;
+			background: #cbdcec;
+			margin-top: 6px;
+			opacity: 0.5;
+			cursor: pointer;
+		}
+		#top{
+			width: 50px;
+			height: 30px;
+			line-height: 30px;
+			background: #cbdcec;
+			margin-top: 6px;
+			opacity: 0.5;
+			cursor: pointer;
+			position: fixed;
+			right: 0;
+			bottom: 13px;		
+			text-align: center;
+			display: none;
+		}
+	</style>
+</head>
+<script src="jquery-1.11.3 (1).js"></script>
+<body>
+<div id="wrap">
+	<img src="images/风景11.jpg" alt="">
+	<img src="images/风景12.jpg" alt="">
+	<img src="images/风景13.jpg" alt="">
+	<img src="images/风景14.jpg" alt="">
+	<img src="images/风景15.jpg" alt="">
+	<img src="images/风景149.jpg" alt="">
+	<ul>
+		<li>1F</li>
+		<li>2F</li>
+		<li>3F</li>
+		<li>4F</li>
+		<li>5F</li>
+		<li>6F</li>
+	</ul>
+	<div id="top">Top</div>
+</div>
+	<script>
+		$(function(){
+			var arr=[];
+			//滚动切换
+			$(window).on("scroll",function(){
+				//获取滚动距离
+				var t=$(window).scrollTop();
+				//当滚动距离大于50时，让楼层和返回顶部显示出来否则就隐藏
+				if(t>50){
+					$("ul").show(1000);
+					$("#top").show(1000);
+				}else{
+					$("ul").hide(1000);
+					$("#top").hide(1000);
+				}
+
+				$.each($("#wrap img"),function(){
+					arr.push($(this).offset().top);
+				})
+
+				$.each(arr,function(i,val){
+					if(t>=val){
+						$("ul").children("li").eq(i).stop().animate({'marginLeft':0},400).siblings().stop().animate({'marginLeft':"50px"},400);
+					}
+				})
+			})
+			
+			//点击楼层切换
+			$("ul li").on("click",function(){
+				var i=$(this).index();
+				$(document.body).animate({"scrollTop":arr[i]},300);
+				$(document.documentElement).animate({"scrollTop":arr[i]},300);
+			})
+
+			//返回顶部
+			$("#top").on("click",function(){
+				$(document.body).animate({"scrollTop":0},1000);
+				$(document.documentElement).animate({"scrollTop":0},1000);
+			})
+
+		})
+	</script>
+</body>
+</html>

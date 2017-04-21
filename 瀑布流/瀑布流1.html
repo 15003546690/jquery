@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding: 0;}
+		#box{position: relative;  margin:50px auto;}
+		#box img{position:absolute;width: 250px}
+	</style>
+</head>
+<body>
+	<div id='box' class='wrap'>
+		<img src="images/1.jpg" alt="">
+		<img src="images/2.jpg" alt="">
+		<img src="images/3.jpg" alt="">
+		<img src="images/4.jpg" alt="">
+		<img src="images/5.jpg" alt="">
+		<img src="images/6.jpg" alt="">
+		<img src="images/7.jpg" alt="">
+		<img src="images/8.jpg" alt="">
+		<img src="images/9.jpg" alt="">
+		<img src="images/10.jpg" alt="">
+		<img src="images/11.jpg" alt="">
+		<img src="images/12.jpg" alt="">
+		<img src="images/13.jpg" alt="">
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(function  () {
+			var w=$(window).width();
+			var imgw=$('#box img').width()+20;
+			var num=Math.floor(w/imgw);
+			var arrH=[];
+			var p=0;
+			function int(str,len){
+				for (var i = str; i <len; i++) {
+					if (i<num) {
+					arrH.push(0)
+				}
+				var minH=Math.min.apply(Math,arrH)
+				var minnum=$.inArray(minH,arrH)
+				var gao=$('.wrap img').eq(i).height()+20
+				arrH[minnum]+=gao
+				$('.wrap img').eq(i).stop().animate({'left':minnum*imgw,'top':minH},600)
+				p++
+				}
+
+			}
+			int(0,$('#box img').length)
+			
+			function readimg(){
+				var dataimg={'data':[
+					{'src':'images/9.jpg'},
+					{'src':'images/10.jpg'},
+					{'src':'images/12.jpg'},
+					{'src':'images/11.jpg'},
+					{'src':'images/13.jpg'},
+					{'src':'images/1.jpg'},
+					{'src':'images/2.jpg'},
+					{'src':'images/3.jpg'},
+					{'src':'images/4.jpg'},
+					{'src':'images/5.jpg'},
+					{'src':'images/6.jpg'},
+					{'src':'images/7.jpg'},
+					{'src':'images/8.jpg'}
+		
+					
+				]}
+				var maxH=Math.max.apply(Math,arrH)
+				var mannum=$.inArray(maxH,arrH)
+				$.each(dataimg.data,function(i,val){
+					$('<img>').attr('src',val.src).css({'left':imgw*mannum,'top':maxH/*0*/}).appendTo($('.wrap'));
+				})//top改成0会出现另一种效果
+				int(p,$('.wrap img').length)
+			}
+
+			$(window).on('scroll',function(){
+				var client=$(document).height()-$(window).height()
+				if ($(this).scrollTop()>=client) {
+					readimg()
+				}
+			})
+	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{ margin: 0; padding: 0;}
+			body{background: url(images/bg.jpg) no-repeat; background-size: cover;}
+			#main{ width: 600px; height: 420px; margin-top: 100px; margin-left: 340px;}
+			#main span{ width: 200px; height: 140px; float: left;}
+			#main span img{ width: 190px; height: 130px; border-radius: 10px;}
+			#pan{ width: 100%; height: 100%;position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.6); display: none;}
+			#showImg{width: 600px; height: 400px; position: absolute; top: 20%; left: 28%; display: none;}
+			#showImg img{ width: 100%; height: 100%;position: absolute; top: 0; left: 0; border-radius: 10px;}
+			#pre{display: none; width: 40px; height: 60px;color: #fff; font-size: 40px; text-align: center; padding-top: 10px; background: #000;opacity: 0.6; border: 1px solid #fff; border-radius: 3px;position: absolute; top: 40%; left: 6%;}
+			#next{display: none; width: 40px; height: 60px;color: #fff; font-size: 40px; text-align: center; padding-top: 10px; background: #000;opacity: 0.6; border: 1px solid #fff; border-radius: 3px;position: absolute; top: 40%; right: 6%;}
+
+		</style>
+		<script type="text/javascript" src="jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#main > span').click(function(){//点击每一张图片首先让
+					$('#pan').fadeIn(500);//  --遮罩层出现
+					$('#pre').fadeIn(500);//  --上一页按钮出现
+					$('#next').fadeIn(500);//  --下一页按钮出现
+					var $l = $('#main > span > img').size(); //九张 变量存起来
+					var $index = $(this).index();//index值
+					//console.log($index);
+					var $img = $('#showImg img')
+					//console.log($img.size());
+					for(var i=0;i<$l;i++){//console.log($img.eq(i));
+						var $src = 'images/show/'+$index+'/'+(i+1)+'.jpg';//每张图片的路径
+						$img.eq(i).attr('src',$src);//点击哪张图片哪张图片和左右键出现
+					}
+					$('#showImg').fadeIn(500);//fadeIn是出现
+				})
+				//下一张
+				$('#next').click(function(){//点击下一张
+					$('#showImg img').filter(':first').animate({'left':'200'},500,function(){//filter筛选出与指定表达式匹配的元素集合。左移动200px   500毫秒
+
+
+					$(this).appendTo('#showImg');//appendTo把所有匹配的元素追加到另一个指定的元素元素集合中。
+
+
+					$(this).animate({'left':'0'},500);//运动
+
+					})
+
+					$('#showImg').animate({'left':'250'},500,function(){//运动
+						$(this).animate({'left':'350'},500);
+					})
+				})
+
+				//上一张
+				$('#pre').click(function(){//点击上一张
+
+					$('#showImg img').filter(':last').animate({'left':'-200'},500,function(){//
+					$(this).prependTo('#showImg');
+					$(this).animate({'left':'0'},500);
+
+					})
+					$('#showImg').animate({'left':'400'},500,function(){
+						$(this).animate({'left':'350'},500);
+					})
+
+
+				})
+				//点击遮罩
+				$('#pan').click(function(){//点击遮罩层     所有都消失回到最初
+					$('#pan').fadeOut(100);
+					$('#showImg').fadeOut(100);
+					$('#pre').fadeOut(100);
+					$('#next').fadeOut(100);
+				})
+
+			})
+
+
+		</script>
+	</head>
+	<body>
+
+			<div id="main">
+				<span><img src="images/main/1.jpg"/></span>
+				<span><img src="images/main/2.jpg"/></span>
+				<span><img src="images/main/3.jpg"/></span>
+				<span><img src="images/main/4.jpg"/></span>
+				<span><img src="images/main/5.jpg"/></span>
+				<span><img src="images/main/6.jpg"/></span>
+				<span><img src="images/main/7.jpg"/></span>
+				<span><img src="images/main/8.jpg"/></span>
+				<span><img src="images/main/9.jpg"/></span>
+			</div>
+
+			<div id="pan"></div>
+				<div id="showImg">
+					<img src="images/show/0/1.jpg"/>
+					<img src="images/show/0/2.jpg"/>
+					<img src="images/show/0/3.jpg"/>
+					<img src="images/show/0/4.jpg"/>
+					<img src="images/show/0/5.jpg"/>
+				</div>
+				<div id="pre"><</div>
+				<div id="next">></div>
+
+	</body>
+</html>

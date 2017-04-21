@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0
+		}
+		ul{
+			width:220px;
+			height: 300px;
+			display: none
+			
+		}
+		ul li{
+			list-style: none;
+			line-height: 25px;
+			width: 220px
+		}
+		ul li.bg{
+			background: red
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="text"><button id="btn">搜索</button>
+		<ul>
+			<li><span></span>@163.com</li>
+			<li><span></span>@360.com</li>
+			<li><span></span>@qq.com</li>
+			<li><span></span>@192.com</li>
+			<li><span></span>@168.com</li>
+		</ul>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		/*window.onkeyup=function(e){
+			var e=window.event||e
+			console.log(e.keyCode)
+		}*/
+		$(function(){
+			//.......keycode
+			var n=0
+			$(window).on('keydown',function(e){		
+				if(e.keyCode==40){
+					$('ul li').eq(n).addClass('bg').siblings().removeClass('bg')
+					n++
+				}
+				if(n>$('ul li').length-1){
+					n=0
+				}
+				//console.log(e.keyCode)
+			})
+			$(window).on('keydown',function(e){
+				if(e.keyCode==38){
+					n--
+					$('ul li').eq(n).addClass('bg').siblings().removeClass('bg')
+					
+				}
+				if(n<0){
+					n=$('ul li').length-1
+				}
+			})
+			$(window).on('keyup',function(e){
+				if(e.keyCode==13){
+					// var index=$('ul>li').index()
+					// $('#text').val($('ul>li').eq(index).text())
+					// $('ul').hide()
+					// console.log(index)
+					$("#text").val($(".bg").text());
+					$('ul').hide()
+				}
+			})
+
+
+			//............
+			$('#text').on('keyup',function(){
+				$('ul').show()
+				var val=$('#text').val()
+				$('ul li span').html(val)
+			})
+			/*$('#text').on('blur',function(){
+				$('ul').hide()
+			})*/
+			$('ul>li').hover(function(){
+				$(this).css({'background':'red'})
+			},function(){
+				$(this).css({'background':'#fff'})
+			})
+			$('ul li').on('click',function(){
+				// var index=$(this).index()
+				// $('#text').val($('ul>li').eq(index).text())
+				// $('ul').hide()
+				$("#text").val($(this).text());
+				$('ul').hide()
+			})
+		})
+	</script>
+</body>
+</html>

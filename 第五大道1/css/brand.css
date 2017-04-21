@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+/*brandtop*/
+.brandTop{height: 200px;width: 1210px;margin: 0 auto;}
+.brandTop li{height: 200px;width: 402px;float: left;position: relative;margin-right: 1px;text-align: center;}
+.brandTop li b{display: block;height: 170px;width: 402px;background: rgba(0,0,0,0.6);position: absolute;left: 0;top: 0;color: #fff;font-size: 18px;padding-top: 30px;opacity: 0;}
+.brandTop li b a{height: 30px;width: 100px;display: block;border: 1px solid #fff;color: #fff;line-height: 30px;margin: 20px 0 0 150px;}
+
+.hotBrand{height: 100%;overflow: hidden;width: 1210px;margin: 0 auto;}
+.hotBrand_title{height: 122px;width: 1210px;}
+.hotBrand_main{height: 547px;width: 1210px;}
+.hotBrand_main li{height: 241px;width: 181px;float: left;margin-right: 24px;position: relative;}
+.hotBrand_main li img{position: absolute;left: 0;top: 0;}
+
+.brandMain{height: 100%;overflow: hidden;width: 1210px;margin: 0  auto;}
+.brandBtn{height: 99px;width: 1210px;background: #f4f4f4;border-bottom: 4px solid #000;}
+.brandBtn ul{height: 99px;width: 320px;margin-left: 460px;position: relative;}
+.brandBtn ul li{float: left;margin-right: 55px;color: #000;font-size: 16px;font-weight: 700;padding-top: 40px;}
+.brandBtn ul i{display: block;height: 18px;width: 21px;position: absolute;left: 140px;bottom: 0;background: url(../img/public/share02.png) 0 -284px;}
+.brandList{height: 700px;width: 1210px;}
+.brandList li{height: 208px;width: 288px;float: left;background: #fff;box-shadow: 3px 3px 6px #A7A6A3; margin:10px 7px;}
+.brandList li img{height: 174px;width: 288px;}
+.brandList li h3{height: 34px;width: 288px;line-height: 34px;background: #f2f2f2;text-align: center;}
+.brandList li:hover h3{color: #e0a782;}
+.More{height: 51px;width: 1210px;background: #f4f4f4;overflow: hidden;}
+.More i{display: block;height: 28px;width: 50px;background: url(../img/public/little_logo2.png) -140px -75px;margin: 15px 0 0 580px;cursor: pointer;}
+
+#zc{width: 1210px;height: 694px;overflow: hidden;}
+
+
+
+

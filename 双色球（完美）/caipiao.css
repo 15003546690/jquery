@@ -1,0 +1,57 @@
+*{margin: 0;padding:0;}
+#box{
+	width: 800px;
+	height: 800px;
+	margin: 50px auto;
+	border:1px solid #000;
+}
+#box h2{
+	font-size: 24px;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	list-style: 30px;
+}
+#red{
+	width: 750px;
+	height: 300px;
+	margin: auto;
+	margin-top:20px; 
+}
+#red span{
+	float: left;
+	margin:20px 24px;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 30px;
+}
+#red span.red{
+	background: red;
+}
+#blue{
+	width: 750px;
+	height: 200px;
+	margin: auto;
+}
+#blue span.blue{
+	background: blue;
+}
+#blue span {
+	float: left;
+	margin:20px 24px;
+	width: 30px;
+	height: 30px;
+	color:red;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 30px;
+}
+#box button{
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	margin-left: 30px;
+}

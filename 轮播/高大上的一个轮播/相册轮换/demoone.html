@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>相册轮换</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			background:url('images/bg.jpg') no-repeat;
+		}
+		.div1{
+			width:600px;
+			height:600px;
+			margin:30px auto;
+
+		}
+		.div1 span{
+			width:200px;
+			height:200px;
+			float:left;
+		}
+		.div1 span img{
+			width:190px;
+			height:190px;
+			border-radius:10px;
+		}
+		.div2{
+			width:100%;
+			height:100%;
+			background:rgba(0,0,0,0.5);
+			position:absolute;
+			top:0;
+			left:0;
+			display:none;
+		}
+		.div2 span{
+			width:40px;
+			height:60px;
+			border-radius:15px;
+			border:1px solid #fff;
+			position:absolute;
+			font-size:40px;
+			text-align:center;
+			line-height:60px;
+			color:white;
+		}
+		.div2 span:nth-child(1){
+			left:5%;
+			top:46%;
+		}
+		.div2 span:nth-child(2){
+			right:5%;
+			top:46%;
+		}
+		.div3{
+			width:500px;
+			height:400px;
+			margin:30px auto;
+			position:absolute;
+			left:50%;
+			top:60px;
+			margin-left:-250px;
+			display:none;
+		}
+		.div3 img{
+			width:100%;
+			height:100%;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<span><img src='images/main/1.jpg'></span>
+		<span><img src='images/main/2.jpg'></span>
+		<span><img src='images/main/3.jpg'></span>
+		<span><img src='images/main/4.jpg'></span>
+		<span><img src='images/main/5.jpg'></span>
+		<span><img src='images/main/6.jpg'></span>
+		<span><img src='images/main/7.jpg'></span>
+		<span><img src='images/main/8.jpg'></span>
+		<span><img src='images/main/9.jpg'></span>
+	</div>
+	<div class="div2">
+		<span class="left">&lt;</span>
+		<span class="right">&gt;</span>
+	</div>
+	<div class='div3'>
+		<img src="images/show/0/1.jpg" alt="">
+		<img src="images/show/0/2.jpg" alt="">
+		<img src="images/show/0/3.jpg" alt="">
+		<img src="images/show/0/4.jpg" alt="">
+		<img src="images/show/0/5.jpg" alt="">
+	</div>
+</body>
+<script type="text/javascript" src="jquery-1.11.3.js" ></script>
+<script>
+	$(function(){
+		$('.div1 span').click(function(){
+			//alert($(this).index());
+			var i=0;
+			var $length=$('.div3 img').length;
+			var $index=$(this).index();
+			$('.div2').fadeIn(500);
+			$('.div3').fadeIn(500);
+			for(i=0;i<$length;i++){
+				var src="images/show/"+$index+"/"+(i+1)+".jpg";
+				$('.div3 img').eq(i).attr('src',src);
+			};
+		})
+		$('.div2').click(function(){
+			$(this).fadeOut(500);
+			$('.div3').fadeOut(500);
+		})
+		$('.left').click(function(e){
+			//var event=e||window.event;
+			e.stopPropagation();
+			$('.div3 img').filter(':last').animate({'left':'-400'},500,function(){
+				$(this).prependTo($('.div3')).animate({'left':'0'},500)
+			})
+			$('.div3').animate({'margin-left':'0'},500,function(){
+				$(this).animate({'margin-left':'-250'},500)
+			})
+		})
+		$('.right').click(function(e){
+			//var event=e||window.event;
+			e.stopPropagation();
+			$('.div3 img').filter(':first').animate({'left':'400'},500,function(){
+				$(this).appendTo($('.div3')).animate({'left':'0'},500)
+			})
+			$('.div3').animate({'margin-left':'-500'},500,function(){
+				$(this).animate({'margin-left':'-250'},500)
+			})
+		})
+
+	})
+</script>
+</html>

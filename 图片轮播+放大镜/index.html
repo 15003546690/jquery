@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片滑过和放大镜</title>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript">
+		$(function(){
+	//当鼠标滑过ol下的li的时候，出现对应的大图，并且加上边框
+		$("#box ol li").each(function(index){
+			$(this).click(function(){
+				$("#box ol li").removeClass("on")
+				$(this).addClass("on")
+				$("#box ul").animate({"margin-left":-329*index},500)
+				$("#box_big ul li").eq(index).show().siblings().hide();
+			})
+		})
+
+		//当鼠标滑到ul的的图片上的时候，p标签显示，并且显示对应的放大图
+
+		$("#pic").mousemove(function(e){
+			$("p").show();
+			$("#box_big").show();
+			var L=e.pageX,l=$(this).offset().left;
+			var T=e.pageY,t=$(this).offset().top;
+			lf=L-l-75;
+			tp=T-t-75;
+			if(lf<0)lf=0;
+			if(tp<0)tp=0;
+			if(lf>179)lf=179;
+			if(tp>290)tp=290;
+			$("#pic p").css({left:lf,top:tp})
+			var maxLf=-lf*2
+			var maxTp=-tp*2
+			$("#box_big ul li").css({left:maxLf,top:maxTp})
+		}).mouseout(function(){
+			$("p").hide();
+			$("#box_big").hide();
+		})
+
+})
+	</script>
+</head>
+<body>
+<div id="wrap">
+	<div id="box">
+		<div id="pic">
+		<ul>
+			<li><img src="imgs/1.jpg"></li>
+			<li><img src="imgs/2.jpg"></li>
+			<li><img src="imgs/3.jpg"></li>
+			<li><img src="imgs/4.jpg"></li>
+
+		</ul>
+		<p></p>
+	</div>
+
+		<ol>
+			<li class="on"><img src="imgs/1.jpg"></li>
+			<li><img src="imgs/2.jpg"></li>
+			<li><img src="imgs/3.jpg"></li>
+			<li><img src="imgs/4.jpg"></li>
+		</ol>
+
+	</div>
+	<div id="box_big" style='display:none;'>
+		<ul>
+			<li style="z-index:1"><img src="imgs/big1.jpg" ></li>
+			<li><img src="imgs/big2.jpg"></li>
+			<li><img src="imgs/big3.jpg"></li>
+			<li><img src="imgs/big4.jpg"></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

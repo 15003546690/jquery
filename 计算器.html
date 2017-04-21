@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.1.1.min.js"></script>
+	<style>
+		*{padding:0;margin:0;font-weight: bold;font-size: 17px;}
+		ul li,ol li{list-style: none;}
+		#wrap{width: 270px;height: 300px;border:2px solid #000;margin:20px auto;background: #ddd}
+	  	#one{height: 65px;background: blue;opacity: 0.6;color: #fff;position: relative;}
+		#top1{height: 25px;line-height: 25px;}
+		#top2{width:270px;height: 40px;line-height: 40px;text-align: right;}
+		span{position: absolute;right: 0;top:20px;}
+		ul{width: 200px;float: left;}
+		ul li{width: 60px;height:60px;float:left;line-height: 60px;text-align: center;}
+		ul li button{width: 40px;height: 40px;}
+		ol{width: 70px;float: right;}
+		ol li button{width: 60px;height: 30px;margin-top: 15px;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="one">
+			<div id="top1"></div>
+			<div id="top2"></div><span id="top3"></span>
+		</div>
+		<div id="two">
+			<ul id="uls">
+				<li><button>7</button></li>
+				<li><button>8</button></li>
+				<li><button>9</button></li>
+				<li><button>4</button></li>
+				<li><button>5</button></li>
+				<li><button>6</button></li>
+				<li><button>1</button></li>
+				<li><button>2</button></li>
+				<li><button>3</button></li>
+				<li><button id="null">C</button></li>
+				<li><button>0</button></li>
+				<li><button>.</button></li>
+			</ul>
+			<ol id="ols">
+				<li><button>/</button></li>
+				<li><button>×</button></li>
+				<li><button>+</button></li>
+				<li><button>-</button></li>
+				<li><button id="count">=</button></li>
+			</ol>
+		</div>
+	</div>
+	<script>
+		//点击左边
+			$('#uls>li>button').on('click',function(){
+				//判断之前输入框中是否有小数点，如果有则不能再添加点，如果没有则进行添加
+				var num=$('#top2').text();
+				if(num.indexOf('.')!=-1){//说明有点
+					//如果有点的话，就不能再加点，如果没有就把点击的值追加到输入框
+					if($(this).text()=='.'){
+
+					}else{
+						$('#top2').append($(this).text());
+					}
+					//如果是0的话，后边只能加点不能加其他值
+				}else if(num=='0'){
+					if($(this).text()=='.'){
+						$('#top2').append($(this).text());
+					}else{
+						$('#top2').text($(this).text())
+					}
+				}else{
+					$('#top2').append($(this).text());
+				}
+			})
+		//点击右边
+			$('#ols>li>button').not("#count").on('click',function(){
+				var num=$('#top2').text();
+				//如果输入框中为小数点或者是空的时候，则不能再输入运算符
+				if(num=='' || num=='.'){
+
+				}else{
+					$('#top1').prepend(num);
+					$('#top3').text($(this).text());
+					$('#top2').text('');
+				}
+			})
+		//清空输入框
+			$('#null').on('click',function(){
+				$('#top2').text('');
+				$('#top1').html('<span id="top3"></span>')
+				$('#top3').text('');
+			})
+
+		//计算
+			var sum={
+				"/":function(a,b){
+					return a/b;
+				},
+				"×":function(a,b){
+					return a*b;
+				},
+				"+":function(a,b){
+					return a+b;
+				},
+				"-":function(a,b){
+					return a-b;
+				}
+			}
+			$('#count').on('click',function(){
+				if($('#top2').text()=='.' || $('#top3').text()==''){
+
+				}else{
+					var num1=parseFloat($('#top1').text());
+					var num2=parseFloat($('#top2').text());
+					var num3=$('#top3').text();
+					$('#top2').text(sum[num3](num1,num2));
+					$('#top3').text('');
+					$('#top1').html('<span id="top3"></span>');
+				}
+				
+			})
+	</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <style>
+        body{
+            font:12px;
+        }
+        #calc{
+            position:absolute;
+            left:50%;
+            top:30%;
+            margin:-161px 0 0 -120px;
+            width:230px;
+            background-color:#C4D2E0;
+            padding:3px;
+        }
+        #display{
+            width:230px;
+            height:60px;
+            background-color:#808080;
+        }
+        #display #top, #display #bottom{
+            height:20px;
+            padding:0 5px;
+            text-align:right;
+            font:14px;
+        }
+        #display #top .countSize{
+            padding:0 5px;
+        }
+        #display #bottom{
+            height:40px;
+            font:bold 20px "Arial";
+        }
+        #buttons{
+            width:230px;
+            text-align:center;
+        }
+        #buttons input{
+            float:left;
+            display:block;
+            width:50px;
+            overflow:hidden;
+        }
+        #buttons #num{
+            float:left;
+            width:160px;
+            overflow:hidden;
+        }
+        #buttons #num input{
+            height:40px;
+            margin:3px 3px 0 0;
+        }
+        #buttons #math{
+            float:left;
+            width:70px;
+            overflow:hidden;
+        }
+        #buttons #math input{
+            width:70px;
+            height:32px;
+            margin:3px 0 0 0;
+        }
+        #buttons #math input#equal{
+            height:30px;
+        }
+        #num input{
+        background:url(img/f.bmp) repeat;
+        width:50px;
+        height:35px;
+        }
+        #math input {
+        background:url(img/f.bmp) repeat;
+        width:40px;
+        height:35px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calc" style="margin-top:20px">
+	<div id="display">
+		<div id="top">
+<!--           <span class="upNum">36</span>  
+   <span class="countSize">*</span>  -->   
+        </div>
+		<div id="bottom"></div>
+	</div>
+	<div id="buttons">
+		<div id="num">
+			<input type="button" value="7" class="num" id="seven" />
+			<input type="button" value="8" class="num" id="eight" />
+			<input type="button" value="9" class="num" id="nine" />
+			<input type="button" value="4" class="num" id="four" />
+			<input type="button" value="5" class="num" id="five" />
+			<input type="button" value="6" class="num" id="six" />
+			<input type="button" value="1" class="num" id="one" />
+			<input type="button" value="2" class="num" id="two" />
+			<input type="button" value="3" class="num" id="three" />
+			<input type="button" value="C" class="clearDisplay" id="clearDisplay" />
+			<input type="button" value="0" class="num" id="zero" />
+			<input type="button" value="." class="num" id="point" />
+		</div>
+		<div id="math">
+			<input type="button" value="/" class="math" id="chu" />
+			<input type="button" value="*" class="math" id="cheng" />
+			<input type="button" value="-" class="math" id="jian" />    <input type="button" value="+" class="math" id="jia" />
+			<input type="button" value="=" class="equal" id="equal" />
+		</div>
+	</div>
+</div>
+</body>
+</html>

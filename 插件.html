@@ -1,0 +1,136 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			width: 200px;
+			height: 30px;
+			margin:50px auto;
+			position: relative;
+		}
+		#x{
+			width: 200px;
+			height: 10px;
+			background: #999;
+			
+		}
+		#y{
+			height: 10px;
+			background: red;
+			position: absolute;
+			top:0px;
+		}
+	</style>
+</head>
+<body>
+	<div id='box'>
+		<div id='x'></div>
+		<div id='y'></div>
+		<div id='z'><span>0</span>/100</div>
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+		$(function(){
+			$('#x').on('mousemove',function(e){
+				var L=e.pageX
+				var Ll=$(this).offset().left
+				console.log(L)
+				console.log(Ll)
+				var w=L-Ll
+				var num=Math.ceil(w/2)				
+					$('#y').width(w)	
+					$('#z span').html(num)		
+			})
+			$('#y').on('mousemove',function(e){
+				var l=e.pageX
+				var ll=$(this).offset().left
+				var W=l-ll
+				var num=Math.ceil(W/2)			
+					$('#y').width(W)	
+					$('#z span').html(num)		
+			})
+		})
+	</script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0
+		}
+		#box{
+			width: 500px;
+			height: 200px;
+		}
+		#line{
+			margin: 50px;
+			width: 200px;
+			background: #000;
+			height: 4px
+		}
+		#sp{
+			margin: 50px;
+			background: red;
+			height: 4px;
+			position:absolute;
+			top:0px;
+		}
+		#round{
+			width: 15px;
+			height: 15px;
+			background: red;
+			border-radius: 10px;
+			position:absolute;
+			left: 50px;
+			top: 44px
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="line">
+			
+		</div>
+		<div id='sp'></div>
+		<div id="round">
+			
+		</div>
+		<div id='zhi'>
+			<span>0</span>/100
+		</div>
+	</div>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			$('#round').on('mousemove',function(e){
+				var m=e.pageX-$(this).width()/2
+				var l=$('#line').offset().left+200
+				var zhi=Math.ceil(m/2-25)
+				if (zhi>=100) {
+					zhi=100
+				}
+				if (zhi<=0) {
+					zhi=0
+				};
+				if (m>=l) {
+					m=l
+				}
+				if (m<50) {
+					m=50
+				};
+				$(this).css('left',m)
+				$('#sp').css('width',m-50)
+				$('#zhi span').html(zhi)
+			})
+		})
+	</script>
+</body>
+</html>

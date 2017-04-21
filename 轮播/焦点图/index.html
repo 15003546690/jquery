@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#box{
+			width:500px;
+			height: 350px;
+			border: 1px solid #000;
+			margin: 20px auto;
+			position: relative;
+			overflow: hidden;
+
+		}
+		#box ul li{
+			list-style: none;
+			width:500px;
+			height: 350px;
+			float: left;
+		}
+		img{
+			width:500px;
+			height:350px;
+		}
+		#dv{
+			position: absolute;
+			left:105px;
+			top:280px;
+		}
+		#dv li{
+			width:30px;
+			height: 30px;
+			border: 1px solid pink;
+			border-radius:30px;
+			background: pink;
+			text-align: center;
+			line-height: 30px;
+			margin: 10px;
+			display: inline-block;
+		}
+		#dv li.bg{background: #000;color: #fff;}
+		span{
+			position: absolute;
+			width:30px;
+			height:50px;
+			background:black;
+			color:white;
+			font-size:20px;
+			line-height: 50px;
+			text-align: center;
+		}
+		.lt{
+			left:50px;
+			top:50%;
+		}
+		.gt{
+			right:50px;
+			top:50%;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="box">
+		<ul>
+			<li><img src="img/5.jpg"/></li>
+			<li><img src="img/1.jpg"/></li>
+			<li><img src="img/2.jpg"/></li>
+			<li><img src="img/3.jpg"/></li>
+			<li><img src="img/4.jpg"/></li>
+			<li><img src="img/5.jpg"/></li>
+			<li><img src="img/1.jpg"/></li>
+		</ul>
+		<div id="dv">
+			<ol>
+				<li class="bg">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+		   </ol>
+		</div>
+		<span class='lt'><</span>
+		<span class='gt'>></span>
+	</div>
+
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+
+
+	   $(function(){
+	   		'use strict'//严格模式
+	   		var  timer=null,index=1;//声明
+	   		var  len=$("#box>ul li").length;//获取图片的个数
+	   		var  h=$("#box>ul li").height();
+	   		var  w=$("#box>ul li").width();
+	   		$("#box ul").width(len*w);//设置ul的样式
+	   		$('#box ul').css('margin-left',-w);
+	   		//点击左右按钮
+	   		$('.gt').on('click',function(){
+	   			index++;
+	   			if(index>len-2){
+	   				$("#dv li").eq(0).addClass("bg").siblings().removeClass("bg");
+	   				$("#box ul").stop().animate({"marginLeft":-w*index},600,function(){
+	   						$("#box ul").css('margin-left',-w);
+	   					})
+	   				index=1;
+	   			}else{
+	   				autoimg(index)
+	   			}
+	   		});
+	   		$('.lt').on('click',function(){
+	   			index--;
+	   			if(index==0){
+	   				$("#dv li").eq(4).addClass("bg").siblings().removeClass("bg");
+	   				$("#box ul").stop().animate({"marginLeft":0},600,function(){
+	   						$("#box ul").css('margin-left',-w*(len-2));
+	   					})
+	   				index=len-2;
+	   			}else{
+	   				autoimg(index)
+	   			}
+	   		})
+	   		//自动轮播
+	   		function  autoplay(){
+	   			timer=setInterval(function(){
+	   				index++;
+	   				if(index>len-2){
+	   					$("#dv li").eq(0).addClass("bg").siblings().removeClass("bg");
+	   					$("#box ul").stop().animate({"marginLeft":-w*index},600,function(){
+	   						$("#box ul").css('margin-left',-w);
+	   					})
+	   					index=1;
+	   				}else{
+	   					autoimg(index);
+	   				}
+	   			},1500);
+	   		}
+	   		autoplay();
+
+	   		$('#box').hover(function(){
+	   			clearInterval(timer);
+	   		},function(){
+	   			autoplay();
+	   		})
+
+	   		$('ol li').on('mouseover',function(){
+	   			index=$(this).index()+1;
+	   			autoimg(index);
+	   		})
+
+	   		function  autoimg(ind){
+	   			$("#box ul").stop().animate({"margin-left":-w*ind},600)
+	   			$("#dv li").eq(ind-1).addClass("bg").siblings().removeClass("bg");
+	   		}
+
+	   })
+
+	</script>
+</body>
+</html>

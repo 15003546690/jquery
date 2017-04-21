@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        *{
+        	margin:0;
+        	padding: 0;
+        	list-style: none;
+        }
+        .wrap{
+        	width: 800px;
+        	margin:0 auto;
+        }
+        .floor p{
+        	color: #fff;
+        	font-size: 60px;
+        	font-weight: bold;
+        	text-align: center;
+        }
+        .list ul li{
+        	width: 150px;
+        	margin-left: 100px;
+        	height: 50px;
+        	background: pink;
+        	color: #fff;
+        	font-weight: bold;
+        	margin-bottom: 5px;
+        	line-height: 50px;
+        }
+        .list{
+        	position:fixed;
+        	right: 0;
+        	bottom: 0;
+        	display: none;
+        }
+        .list ul span{
+        	display: none;
+        }
+        #return{
+        	width: 150px;
+        	margin-left: 100px;
+        	background: pink;
+        	color: #fff;
+        	font-weight: bold;
+        	margin-bottom: 5px;
+        	line-height: 50px;
+        }
+	</style>
+</head>
+<body>
+
+	<div class='wrap'>
+		 <div class='list'>
+		 	 <ul>
+		 	 	<li style="background: red">1F<span>超级市场</span></li>
+		 	 	<li style="background: green">2F<span>精美服装</span></li>
+		 	 	<li style="background: blue">3F<span>化妆品</span></li>
+		 	 	<li style="background: pink">4F<span>婴儿用品</span></li>
+		 	 	<li style="background: yellow">5F<span>休闲娱乐</span></li>
+		 	 	<li style="background: violet">6F<span>美食广场</span></li>
+		 	 </ul>
+		 	 <div id="return">
+		 	 	^top
+		 	 </div>
+		 </div>
+		 <div class='floor'>
+		 	 <p style="height: 500px;background: red">1F</p>
+		 	 <p style="height: 350px;background: green">2F</p>
+		 	 <p style="height: 800px;background: blue">3F</p>
+		 	 <p style="height: 760px;background: pink">4F</p>
+		 	 <p style="height: 400px;background: yellow">5F</p>
+		 	 <p style="height: 900px;background: violet">6F</p>
+		 </div>
+	</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+	     /*$(function(){
+	         var  arr=[];
+	         $('.floor p').each(function(){
+	         	  arr.push($(this).offset().top)
+	         }) 
+	         
+	         $(window).on('scroll',function(){
+	         	var  top=$(this).scrollTop();
+                if (top>100) {
+                	$('.list').show();
+                }else{
+                	$('.list').hide();
+                } 
+
+                $.each(arr,function(i,val){
+                   if (top>=val) {
+                   	   $('.list ul li').eq(i).stop().animate({'marginLeft':0}).find('span').show().end().siblings().stop().animate({'marginLeft':100}).find('span').hide()
+                   }
+                }) 
+
+
+	         })
+           //返回顶部
+	          $('#return').on('click',function(){
+                	  $('body').stop().animate({'scrollTop':0})
+                })
+
+	          $('.list ul li').on('click',function(){
+	          	   var  ins=$(this).index();
+	          	   $('body').stop().animate({'scrollTop':arr[ins]})
+	          })
+	     })*/
+		$(function(){
+			 var  arr=[];
+			 $(window).on('scroll',function(){
+			 	 
+			 	 var  top=$(this).scrollTop();
+                 var  ind=$('.floor p');
+                 if (top>100) {
+                 	$('.list').show()
+                 }else{
+                 	$('.list').hide()
+                 }
+
+                $(ind).each(function(){
+                	 arr.push($(this).offset().top)
+                })
+			 	
+			 	$.each(arr,function(i,val){
+			 		 if (top>=val) {
+			 		 	$('.list ul li').eq(i).stop().animate({'marginLeft':0}).find('span').show().end().siblings().stop().animate({'marginLeft':100}).find('span').hide();
+			 		 }
+			 	})                                   
+			 })            
+             
+             $('.list ul li').on('click',function(){
+             	  var  indd=$(this).index();
+             	  $('body').scrollTop(arr[indd]);
+             })
+
+			 $('#return').on('click',function(){
+			 	  $('body').scrollTop(0);
+			 })
+		})
+	</script>
+</body>
+</html>

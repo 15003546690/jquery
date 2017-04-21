@@ -1,0 +1,4 @@
+index:挺全面的一个，最完整的一个animate
+无缝滚动:有BUUG,刚打开页面的时候,鼠标滑动ol的index,ul的Li没反应。（已经解决，原因是因为库写在了body外面）
+运动：问题挺大
+轮播图：findIn  findUp

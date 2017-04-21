@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.1.1.min.js"></script>
+	<style>
+		*{padding:0;margin:0;}
+		ul li{list-style: none;line-height: 100px;text-align: center;cursor: move;}
+		#wrap{width: 600px;height: 150px;border: 2px solid #ccc;margin:50px auto;}
+		ul{margin-top: 25px;width: 600px;height: 100px;}
+		.box{width: 100px;height:100px;float: left;margin-left: 15px;border: 1px solid green;}
+		.newbox{width: 100px;height:100px;position:absolute;margin-left: 15px;
+			border: 1px dashed blue;background: #eee;}
+		.addbox{width: 100px;height:100px;float: left;margin-left: 15px;border: 1px dashed red;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+			<li class="box">1</li>
+			<li class="box">2</li>
+			<li class="box">3</li>
+			<li class="box">4</li>
+			<li class="box">5</li>
+		</ul>
+	</div>
+	<script>
+		$('ul>li').on('mousedown',function(e){
+			//给每个li进行定位
+			var that=$(this);
+			var l=that.offset().left-(that.outerWidth(true)-that.outerWidth());
+			var t=that.offset().top;
+			//因为li有浮动,所以在定位的时候会重叠在一起
+			that.attr({'class':'newbox'}).css({'left':l,'top':t});
+			$('<div class="addbox"></div>').insertBefore(that);
+			//获取鼠标按下时的坐标，在拖动的时候相对于按下的坐标进行定位
+			var left=e.pageX-l;
+			var top=e.pageY-t;
+			$(document).on('mousemove',function(e){
+				var L=e.pageX-left;
+				var T=e.pageY-top;
+				that.css({'left':L,'top':T});
+			//对所有的li进行遍历,获取到它距离浏览器的距离
+				$('.box').each(function(){
+					var self=$(this);
+					var center=self.offset().left+self.outerWidth()/2;
+					//获取第一个li距离浏览器的距离，让每一个li与之相比较
+					var first=$('.box').first();
+					var firstCenter=first.offset().left+first.outerWidth()/2;
+					//获取当前操作的li距离浏览器的距离
+					var thatLeft=that.offset().left+that.outerWidth();
+					if(that.offset().left<=firstCenter){
+						$('.addbox').insertBefore(first);
+					}
+					if(thatLeft>=center){
+						$('.addbox').insertAfter(self);
+					}
+				})
+			})
+			$(this).on("mouseup",function(){
+				$(document).off("mousemove");
+				that.insertBefore('.addbox');
+				that.attr('class','box');
+				$('.addbox').remove()
+
+			})
+		})
+
+	</script>
+</body>
+</html>

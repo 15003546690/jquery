@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul{width: 650px;overflow: hidden;}
+		ul li{float: left;list-style: none;width: 50px}
+	</style>
+</head>
+<body>
+	<ul>
+		<li><img src="images/img1.gif"></li>
+		<li><img src="images/img2.jpg"></li>
+		<li><img src="images/img3.jpg"></li>
+		<li><img src="images/img4.jpg"></li>
+		<li><img src="images/img5.png"></li>
+	</ul>
+	<script src="jquery-2.1.1.js"></script>
+	<script>
+		$(function(){
+			$('ul>li').on('click',function(){
+				$(this).stop(false,true).animate({'width':490},600).siblings().stop().animate({'width':40},600)
+			})
+		})
+	</script>
+</body>
+</html>

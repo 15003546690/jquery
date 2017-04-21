@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	#box{height: 170px;width:490px;border: solid 1px #ccc;margin:20px auto;/* overflow: hidden*/;position: relative;}
+	ul,ol{list-style: none;}
+	ul li{float: left} 
+	ol{position: absolute;left:280px;bottom:10px;}
+	ol li{float: left;width: 30px;height: 30px;background: #f5f5f5;border-radius: 15px;margin-left: 3px;text-align: center;line-height: 30px;}
+	.bg{background: #ccc;}
+	.left{position: absolute;top:60px;color:red;font-size: 50px;font-weight: bolder;}
+	.right{position: absolute;top:60px;color:red;right: 10px;font-size: 50px;font-weight: bolder;}
+	</style>
+</head>
+<body>
+<div id='box'>
+	<ul>
+		<li><img src="img/img1.jpg"></li>
+		<li><img src="img/img2.jpg"></li>
+		<li><img src="img/img3.jpg"></li>
+		<li><img src="img/img4.jpg"></li>
+		<li><img src="img/img5.jpg"></li>
+		<li><img src="img/img6.jpg"></li>
+	</ul>
+	<ol>
+		<li class='bg'>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ol>
+	<div class='left'>&lt;</div>
+	<div class='right'>&gt;</div>
+</div>
+	<script src='jquery-2.1.1.js'></script>
+	<script>
+	$(function(){
+		var timer=null
+		var ins=0
+		var w=$('#box ul>li').width()
+		var len=$('#box ul>li').length
+		$('#box ul').width(w*len)
+		console.log(-w*len)
+		function auto(){
+			timer=setInterval(function(){
+				ins++
+				if(ins>len-1){
+					$('#box ul').width(w*(len+1))		//重新设置ul的宽+一个图片的宽
+					$('#box ul li').first().clone().appendTo('#box ul')	//将第一个li复制追加到最后
+					$('#box ul').stop().animate({'margin-left':-w*len},1000,function(){
+						$('#box ul li').last().remove()		//回调函数	将追加的li删除
+						$('#box ul').css('margin-left',0)	//ul的位置为0
+					})				//ul开始移动
+					ins=0
+					$('ol>li').eq(0).addClass('bg').siblings().removeClass('bg')	//ol下的第一个li添加样式	
+				}else{
+					show(ins)
+				}
+			},2000)
+		};
+		auto()
+
+		$('#box').hover(function(){
+			clearInterval(timer)
+		},function(){
+			auto()
+		})
+
+		$('ol>li').on('mouseover',function(){
+			ins=$(this).index()
+			show(ins)
+		})
+
+		function show(ins){
+			$('ul').stop().animate({'margin-left':-w*ins},1000)
+			$('ol>li').eq(ins).addClass('bg').siblings().removeClass('bg')
+		}
+		$('.right').on('click',function(){
+			ins++
+			if(ins>len-1){
+				ins=0
+			}
+			show(ins)
+		})
+		$('.left').on('click',function(){
+			ins--
+			if(ins<0){
+				ins=len-1
+			}
+			show(ins)
+		})
+	})
+	</script>
+</body>
+</html>

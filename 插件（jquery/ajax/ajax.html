@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<script src='ajax.js'></script>
+<body>
+
+</body>
+<script>
+var opt={
+	//
+	u:'../json.json',
+	tp:'get',
+	pr:{
+		// name:'lulu',
+		// age:23,
+		// class:'1501d'
+	},
+	cb:function(r){
+		console.log(r)
+	}
+}
+
+_$.ajax(opt);
+</script>
+</html>

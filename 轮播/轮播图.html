@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='jquery-2.1.1.js'></script>
+	<style>
+	*{margin: 0;padding: 0;}
+	#box{height: 170px;width:490px;border: solid 1px #ccc;margin:20px auto;overflow: hidden; position: relative;}
+	ul,ol{list-style: none;}
+	ol{position: absolute;left:280px;bottom:10px;}
+	ol li{float: left;width: 30px;height: 30px;background: #f5f5f5;border-radius: 15px;margin-left: 3px;text-align: center;line-height: 30px;}
+	.bg{background: #ccc;}
+	</style>
+</head>
+<body>
+<div id='box'>
+	<ul>
+		<li><img src="img/img1.jpg" alt=""></li>
+		<li><img src="img/img2.jpg" alt=""></li>
+		<li><img src="img/img3.jpg" alt=""></li>
+		<li><img src="img/img4.jpg" alt=""></li>
+		<li><img src="img/img5.jpg" alt=""></li>
+		<li><img src="img/img6.jpg" alt=""></li>
+	</ul>
+	<ol>
+		<li class='bg'>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ol>
+</div>
+	<script>
+	$(function(){
+		var len=$('ul li').length
+		var timer=null
+		var ins=0
+		function auto(){
+			timer=setInterval(function(){
+				ins++
+				if(ins>len-1) ins=0
+				show()
+			},2000)
+		}
+		auto()
+		//滑过盒子时清除定时器，离开时运动
+		$('#box').hover(function(){
+			clearInterval(timer)
+		},function(){
+			auto()
+		})
+		//滑过ol下的li时
+		$('ol>li').on('mouseover',function(){
+			ins=$(this).index()
+			show()
+		})
+		//淡入淡出
+		function show(){
+			$('ul>li').eq(ins).fadeIn().siblings().fadeOut()
+			$('ol>li').eq(ins).addClass('bg').siblings().removeClass('bg')
+		}	
+		//向上向下
+		/*function show(){
+			$('ul>li').eq(ins).slideDown().siblings().slideUp()
+			$('ol>li').eq(ins).addClass('bg').siblings().removeClass('bg')
+		}*/
+	})
+	</script>
+</body>
+</html>

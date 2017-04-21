@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.11.3 (1).js"></script>
+	<style>
+		*{margin:0;padding: 0;}
+		img{width: 100px; height: 100px;}
+		#box{width:400px;height: 200px;border:1px solid #ccc;margin:20px auto;}
+		.minImg{width:100px;height: 100px;position: relative;float: left;}
+		b{width:30px;height: 30px;background: #eee;opacity: 0.5;position: absolute;left:0px;top:0px;display: none;}
+		.maxImg{width: 200px;height: 200px;overflow: hidden;display: none;position: relative;float:right;}
+		.maxImg img{position: absolute;left:0px;top:0px;  width: 200px; height: 200px;}
+	</style>
+</head>
+<body>
+<div id="box">
+	<div class="minImg"><img src="images/fang.jpg" alt=""><b></b></div>
+	<div class="maxImg"><img src="images/fang.jpg" alt=""></div>
+</div>
+
+<script>
+
+$(function(){
+	$(".minImg").mousemove(function(e){
+		$("b").show();
+		$(".maxImg").show();
+		var L=e.pageX,T=e.pageY;
+		var l=$(".minImg").offset().left,t=$(".minImg").offset().top;
+		var left=L-l-$("b").width()/2,top=T-t-$("b").height()/2;
+		if(left<0){
+			left=0;
+		}
+		if(left>$(this).width()-$("b").width()){
+			left=$(this).width()-$("b").width();
+		}
+		if(top<0){
+			top=0;
+		}
+		if(top>$(this).height()-$("b").height()){
+			top=$(this).height()-$("b").height();
+		}
+		$("b").show().css({"left":left,"top":top});
+		$(".maxImg img").css({"width":$(this).width()/$("b").width()*$(".maxImg").width(),"height":$(this).height()/$("b").height()*$(".maxImg").height(),"left":-left*$(".maxImg img").width()/$(this).width(),"top":-top*$(".maxImg img").height()/$(this).height()});
+	}).mouseout(function(){
+		$("b").hide();
+		$(".maxImg").hide();
+	})
+})
+
+
+</script>
+</body>
+</html>

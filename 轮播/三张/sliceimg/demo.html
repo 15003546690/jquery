@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击按钮无缝滚动</title>
+	<link rel="stylesheet" href="css/demo.css">
+	<style>
+		*{margin: 0;padding:0;}
+		ul,li,ol{list-style: none}
+		#box{width:753px; margin: 20px auto; height: 164px; position: relative;clear: both;overflow: hidden;}
+
+		#pics img{width: 250px;float: left;padding-right: 1px;}
+		.left,.right{position: absolute;top:70px; width:40px; height: 50px; background: red;opacity: 0.3; line-height: 50px; text-align: center;color:#fff;cursor: pointer;}
+		.left{left:20px;}
+		.right{right: 20px;}
+
+		#boo{
+			width: 100px;
+			height: 100px;
+			background: #ccc;
+			padding:10px;
+			border:solid 5px #0ff;
+			margin:100px;
+		}
+	</style>
+	<script src="js/jquery-1.7.1.js"></script>
+</head>
+<body>
+
+<div id="box">
+	<div id="pics">
+		<img src="img/1.jpg" alt="">
+		<img src="img/2.jpg" alt="">
+		<img src="img/3.jpg" alt="">
+		<img src="img/4.jpg" alt="">
+		<img src="img/5.jpg" alt="">
+		<img src="img/6.jpg" alt="">
+		<img src="img/7.jpg" alt="">
+		<div class="left">&lt;</div>
+		<div class="right">&gt;</div>
+	</div>
+</div>
+
+<div id="boo"></div>
+
+<script>
+
+   $(function(){
+
+   	  // console.log($("#boo").outerWidth(true))
+
+   	  var  len=$("#pics img").length,
+   	       w=$("#pics img").outerWidth();
+
+   	       $("#pics").width(len*w);
+   	  //改图片显示的数量（上面改大盒子的宽）
+   	  var  ind=3;
+
+
+
+
+   	  //slice(start,end)返回截取的新数组，包含start，不包含end
+
+   	  $(".right").on("click",function(){
+   	  	 $("#pics").stop().animate({"margin-left":-ind*w},1000,function(){
+   	  	 	$("#pics img").slice(0,ind).appendTo("#pics");
+   	  	 	$("#pics").css("margin-left",0);
+   	  	 })
+   	  })
+
+   	  $(".left").on("click",function(){
+   	  	$("#pics").css("margin-left",-w*ind);
+   	  	$("#pics img").slice(len-ind).prependTo("#pics");
+   	  	$("#pics").stop().animate({"margin-left":0},1000)
+   	  })
+
+   	       ///width()只能获取元素本身的宽度
+   	       //innerWidth()可以获取元素本身的宽度+padding
+   	       //outerWidth()可以获取元素本身的宽度+padding+border
+   	       //outerWidth(true)可以获取本身宽度+padding+border+margin
+
+   })
+
+</script>
+</body>
+</html>
